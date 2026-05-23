@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
     //my code here
     printf("Hello World!\n");				// Print to console
-    printf_lcd("\fHello World!\n");		// Print to LCD display
+    printf_lcd("\fHello World 2!\n");		// Print to LCD display
 
 	status = MyRio_Close();						// close FPGA session
 

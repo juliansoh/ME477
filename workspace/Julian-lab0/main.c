@@ -6,11 +6,13 @@
  */
 
 /* includes */
+#include <stdlib.h>
 #include <stdio.h>
 #include "MyRio.h"
 #include "T1.h"
 
 /* prototypes */
+int interactive_add(double);
 
 /* definitions */
 
@@ -21,11 +23,26 @@ int main(int argc, char **argv)
     status = MyRio_Open();		    			// open FPGA session
     if (MyRio_IsNotSuccess(status)) return status;
 
-    //my code here
-    printf("Hello World!\n");				// Print to console
-    printf_lcd("\fHello World!\n");		// Print to LCD display
+    interactive_add(0);
+
+    printf_lcd("\fBye...");		// Print to LCD display
 
 	status = MyRio_Close();						// close FPGA session
 
 	return status;
+}
+
+int interactive_add(double total)
+{
+	char prompt_string[40];	//Initialize the prompt to display
+	double summand = -1;	//initialize Summand to a non zero value
+
+	while(summand !=0)	//Do this while loop while user does not enter 0
+	{
+		sprintf(prompt_string,"Total: %5g\nSummand\n(0 to end):", total);
+		summand = double_in(prompt_string);
+		total += summand;
+	}
+	return EXIT_SUCCESS;
+
 }
