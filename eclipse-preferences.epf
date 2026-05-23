@@ -1,0 +1,143 @@
+#Sat Jan 04 18:08:40 PST 2025
+@org.eclipse.debug.ui=3.9.0.v20130516-1713
+/instance/org.eclipse.cdt.core.prj-lab0/indexer/preferenceScope=0
+@org.eclipse.ui.ide=3.9.2.v20131004-0923
+/instance/org.eclipse.e4.ui.css.swt.theme/themeid=org.eclipse.e4.ui.css.theme.e4_default
+/instance/org.eclipse.ui.workbench/org.eclipse.ui.ide.systemDefault.org.eclipse.cdt.ui.buildconsole.ConsoleFont=1|Courier New|9.75|1|WINDOWS|1|-13|0|0|0|700|0|0|0|0|3|2|1|49|Courier New;
+/instance/org.eclipse.cdt.ui/semanticHighlighting.functionDeclaration.color=0,0,255
+@org.eclipse.cdt.ui=5.7.0.201402142303
+/instance/org.eclipse.debug.core//org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.remoteApplicationLaunchType=org.eclipse.rse.remotecdt.dsf.debug,debug
+/instance/org.eclipse.rse.core/useridperkey=DESKTOP-Q6FGAP9.Local\=vagrant;DESKTOP-Q6FGAP9.172.22.11.2\=admin;
+/instance/org.eclipse.cdt.core.prj-myLab1/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.core.prj-D1_lib/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.mylyn.ui/org.eclipse.mylyn.cdt.ui.run.count.3_3_0=1
+/instance/org.eclipse.cdt.core.prj-lab3/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.core.prj-T1/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.ui/semanticHighlighting.macroSubstitution.bold=true
+/instance/org.eclipse.ui.ide/PROBLEMS_FILTERS_MIGRATE=true
+/instance/org.eclipse.ui.editors/overviewRuler_migration=migrated_3.1
+/instance/org.eclipse.core.runtime/line.separator=\r\n
+/instance/org.eclipse.core.resources/version=1
+@org.eclipse.core.resources=3.8.101.v20130717-0806
+/instance/org.eclipse.cdt.core.prj-myLab4/indexer/preferenceScope=0
+/instance/org.eclipse.ui/showIntro=false
+/instance/org.eclipse.ui.workbench/UIActivities.org.eclipse.cdt.debug.dsfgdbActivity=true
+/instance/org.eclipse.cdt.ui/c_multi_line_comment=64,128,128
+@org.eclipse.rse.ui=3.3.100.201306211706
+/instance/org.eclipse.rse.ui/org.eclipse.rse.preferences.order.connections=DESKTOP-Q6FGAP9.Local;DESKTOP-Q6FGAP9.172.22.11.2
+/instance/org.eclipse.cdt.core/macros/workspace=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<macros/>\r\n
+/instance/org.eclipse.cdt.core.prj-myHelloWorld/indexer/preferenceScope=0
+@org.eclipse.debug.core=3.8.0.v20130514-0954
+/instance/org.eclipse.mylyn.tasks.ui/org.eclipse.mylyn.tasks.ui.filters.nonmatching.encouraged=true
+@org.eclipse.team.cvs.ui=3.3.600.v20130514-1224
+/instance/org.eclipse.cdt.core.prj-lab6/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.ui.prj-hello-world/buildConsole/logLocation=C\:\\Users\\vagrant\\workspace\\D1-workspace\\.metadata\\.plugins\\org.eclipse.cdt.ui\\hello-world.build.log
+/instance/org.eclipse.cdt.ui/semanticHighlighting.macroDefinition.enabled=true
+/configuration/org.eclipse.ui.ide/MAX_RECENT_WORKSPACES=5
+@org.eclipse.ui.workbench=3.105.2.v20140211-1711
+/instance/org.eclipse.cdt.core.prj-me477Library_v4_distribution/indexer/preferenceScope=0
+file_export_version=3.0
+@org.eclipse.cdt.core=5.6.0.201402142303
+/instance/org.eclipse.cdt.ui/semanticHighlighting.function.enabled=true
+@org.eclipse.rse.core=3.3.100.201307171557
+/instance/org.eclipse.cdt.core.prj-myLab7/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.managedbuilder.core/properties/sandbox-1.cdt.managedbuild.target.gnu.mingw.exe.481947072/cdt.managedbuild.config.gnu.mingw.exe.debug.1765164795=cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.1675414832\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1970732530\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.mingw.base.2018936470\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.394316468\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug.1060470629\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.715654262\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.config.gnu.mingw.exe.debug.1765164795\=rcState\\\=0\\r\\nrebuildState\\\=false\\r\\n\r\ncdt.managedbuild.toolchain.gnu.mingw.exe.debug.2063274683\=rebuildState\\\=false\\r\\n\r\n
+/instance/org.eclipse.cdt.ui/semanticHighlighting.method.enabled=true
+/instance/org.eclipse.cdt.core.prj-hello-world/indexer/preferenceScope=0
+/instance/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true
+/instance/org.eclipse.cdt.managedbuilder.core/properties/sandbox-1.cdt.managedbuild.target.gnu.mingw.exe.481947072/cdt.managedbuild.config.gnu.mingw.exe.release.2040538103=cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.602699937\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.assembler.mingw.exe.release.561053317\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.mingw.exe.release.1679045759\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.2050117460\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.mingw.base.1655013980\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.1560451253\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.toolchain.gnu.mingw.exe.release.573561260\=rebuildState\\\=true\\r\\n\r\n
+/instance/org.eclipse.team.ui/org.eclipse.team.ui.first_time=false
+/instance/org.eclipse.cdt.managedbuilder.core/properties/myRIO\ Template.cdt.managedbuild.target.gnu.cross.exe.2053554138/cdt.managedbuild.config.gnu.cross.exe.release.105005924=cdt.managedbuild.tool.gnu.cross.archiver.712142583\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.cpp.compiler.40318118\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.c.compiler.1200123159\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.c.linker.1918171461\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.toolchain.gnu.cross.exe.release.910528131\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.assembler.900894349\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.cpp.linker.840554641\=rebuildState\\\=true\\r\\n\r\n
+/instance/org.eclipse.cdt.ui/semanticHighlighting.macroSubstitution.enabled=true
+/instance/org.eclipse.ui.ide/platformState=1646346469433
+@org.eclipse.core.net=1.2.200.v20130430-1352
+/instance/org.eclipse.cdt.core.prj-myLab0/indexer/preferenceScope=0
+/instance/org.eclipse.debug.core//org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.postmortemLaunchType=org.eclipse.cdt.dsf.gdb.launch.coreCLaunch,debug
+/instance/org.eclipse.mylyn.monitor.ui/org.eclipse.mylyn.monitor.activity.tracking.enabled.checked=true
+\!/=
+/instance/org.eclipse.rse.core/org.eclipse.rse.systemtype.local.systemType.defaultUserId=vagrant
+/instance/org.eclipse.cdt.ui/semanticHighlighting.class.bold=true
+/instance/org.eclipse.cdt.core.prj-lab2/indexer/preferenceScope=0
+@org.eclipse.cdt.debug.core=7.4.0.201402142303
+/instance/org.eclipse.debug.ui/pref_state_memento.org.eclipse.debug.ui.VariableView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="315" org.eclipse.debug.ui.SASH_VIEW_PART\="684"/>
+@org.eclipse.mylyn.monitor.ui=3.9.2.v20140211-0100
+@org.eclipse.cdt.dsf.ui=2.4.0.201402142303
+/instance/org.eclipse.cdt.ui/semanticHighlighting.method.color=0,128,255
+/instance/org.eclipse.ui.workbench/org.eclipse.ui.ide.systemDefault.org.eclipse.jface.textfont=1|Courier New|9.75|1|WINDOWS|1|-13|0|0|0|700|0|0|0|0|3|2|1|49|Courier New;
+/instance/org.eclipse.cdt.ui/c_numbers=128,128,128
+/instance/org.eclipse.ui.workbench/ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.cdt.ui.editors.textfont
+/instance/org.eclipse.cdt.core.prj-myLab3/indexer/preferenceScope=0
+@org.eclipse.ui.editors=3.8.100.v20130513-1637
+/instance/org.eclipse.cdt.ui.prj-hello-world/buildConsole/keepLog=true
+/instance/org.eclipse.cdt.ui/c_string=128,0,64
+/instance/org.eclipse.cdt.ui/c_type=140,0,0
+/instance/org.eclipse.ui.workbench/org.eclipse.cdt.ui.editors.textfont=1|Courier New|11.25|0|WINDOWS|1|-15|0|0|0|400|0|0|0|0|3|2|1|49|Courier New;
+/configuration/org.eclipse.ui.ide/RECENT_WORKSPACES=C\:\\Users\\vagrant\\workspace
+/instance/org.eclipse.cdt.ui/useQuickDiffPrefPage=true
+/instance/org.eclipse.debug.core//org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.attachLaunchType=org.eclipse.cdt.dsf.gdb.launch.attachCLaunch,debug
+/instance/org.eclipse.team.cvs.ui/pref_first_startup=false
+/instance/org.eclipse.ui.ide/quickStart=false
+/instance/org.eclipse.cdt.core.prj-lab5/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.ui/sourceHoverBackgroundColor=255,255,255
+/instance/org.eclipse.debug.ui/org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+/instance/org.eclipse.cdt.ui.prj-hello-world-local/buildConsole/keepLog=true
+/instance/org.eclipse.cdt.core.prj-myLab6/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.ui.prj-hello-world-local/buildConsole/logLocation=Z\:\\D1-workspace-source\\D1-workspace\\.metadata\\.plugins\\org.eclipse.cdt.ui\\hello-world-local.build.log
+/instance/org.eclipse.ui.workbench/ENABLED_DECORATORS=org.eclipse.cdt.ui.indexedFiles\:false,org.eclipse.cdt.managedbuilder.ui.excludedFile\:true,org.eclipse.cdt.managedbuilder.ui.includeFolder\:true,org.eclipse.cdt.internal.ui.CustomBuildSettingsDecorator\:true,org.eclipse.egit.ui.internal.decorators.GitLightweightDecorator\:true,org.eclipse.linuxtools.tmf.ui.trace_folder.decorator\:true,org.eclipse.linuxtools.tmf.ui.experiment_folder.decorator\:true,org.eclipse.linuxtools.tmf.ui.linked_trace.decorator\:true,org.eclipse.mylyn.context.ui.decorator.interest\:true,org.eclipse.mylyn.tasks.ui.decorators.task\:true,org.eclipse.mylyn.team.ui.changeset.decorator\:true,org.eclipse.rse.core.virtualobject.decorator\:true,org.eclipse.rse.core.binary.executable.decorator\:true,org.eclipse.rse.core.script.executable.decorator\:true,org.eclipse.rse.core.java.executable.decorator\:true,org.eclipse.rse.core.library.decorator\:true,org.eclipse.rse.core.link.decorator\:true,org.eclipse.rse.subsystems.error.decorator\:true,org.eclipse.team.cvs.ui.decorator\:true,org.eclipse.ui.LinkedResourceDecorator\:true,org.eclipse.ui.SymlinkDecorator\:true,org.eclipse.ui.VirtualResourceDecorator\:true,org.eclipse.ui.ContentTypeDecorator\:true,org.eclipse.ui.ResourceFilterDecorator\:false,
+/instance/org.eclipse.cdt.ui/c_keyword=0,98,0
+/instance/org.eclipse.mylyn.context.core/mylyn.attention.migrated=true
+/instance/org.eclipse.cdt.core.prj-lab8/indexer/preferenceScope=0
+@org.eclipse.mylyn.context.core=3.9.2.v20140211-0100
+/instance/org.eclipse.cdt.ui/c_operators=128,128,128
+@org.eclipse.core.runtime=3.9.100.v20131218-1515
+/instance/org.eclipse.cdt.ui/org.eclipse.cdt.ui.text.templates.custom=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+@org.eclipse.cdt.mylyn.ui=3.9.2.v20140211-0100
+@org.eclipse.search=3.9.1.v20131121-1346
+/instance/org.eclipse.debug.ui/preferredDetailPanes=DefaultDetailPane\:DefaultDetailPane|
+/instance/org.eclipse.ui.workbench/ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.cdt.ui.presentation\tTorg.eclipse.cdt.ui.CEditor.presentation
+/instance/org.eclipse.debug.ui/org.eclipse.debug.ui.switch_perspective_on_suspend=always
+/instance/org.eclipse.ui.ide/tipsAndTricks=true
+/instance/org.eclipse.debug.core/prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<watchExpressions/>\r\n
+/instance/org.eclipse.cdt.ui.prj-lab0/buildConsole/keepLog=true
+/instance/org.eclipse.cdt.ui/spelling_locale_initialized=true
+/instance/org.eclipse.cdt.core.prj-lab1/indexer/preferenceScope=0
+/instance/org.eclipse.debug.ui/org.eclipse.debug.ui.user_view_bindings=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<viewBindings>\r\n<view id\="org.eclipse.ui.console.ConsoleView">\r\n<perspective id\="org.eclipse.debug.ui.DebugPerspective" userAction\="opened"/>\r\n</view>\r\n</viewBindings>\r\n
+/instance/org.eclipse.cdt.ui/useAnnotationsPrefPage=true
+/instance/org.eclipse.jsch.core/org.eclipse.jsch.core.hasChangedDefaultWin32SshHome=true
+/instance/org.eclipse.cdt.ui/semanticHighlighting.methodDeclaration.color=0,128,255
+@org.eclipse.team.ui=3.7.1.v20130729-1104
+/instance/org.eclipse.cdt.ui.prj-lab0/buildConsole/logLocation=Z\:\\D1-workspace-source\\D1-workspace\\.metadata\\.plugins\\org.eclipse.cdt.ui\\lab0.build.log
+/instance/org.eclipse.search/org.eclipse.search.defaultPerspective=org.eclipse.search.defaultPerspective.none
+/instance/org.eclipse.mylyn.tasks.ui/org.eclipse.mylyn.tasks.ui.filters.nonmatching=true
+@org.eclipse.mylyn.tasks.ui=3.9.2.v20140211-0100
+@org.eclipse.egit.core=3.2.0.201312181205-r
+/instance/org.eclipse.cdt.core.prj-myLab2/indexer/preferenceScope=0
+@org.eclipse.e4.ui.css.swt.theme=0.9.100.v20130515-1857
+/instance/org.eclipse.debug.core//org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.applicationLaunchType=org.eclipse.cdt.dsf.gdb.launch.localCLaunch,debug;org.eclipse.cdt.cdi.launch.localCLaunch,run
+/instance/org.eclipse.ui.workbench/PLUGINS_NOT_ACTIVATED_ON_STARTUP=
+/instance/org.eclipse.cdt.core.prj-lab4/indexer/preferenceScope=0
+/configuration/org.eclipse.ui.ide/RECENT_WORKSPACES_PROTOCOL=3
+/configuration/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true
+/instance/org.eclipse.cdt.ui/semanticHighlighting.macroSubstitution.color=128,128,0
+/instance/org.eclipse.cdt.ui/content_assist_disabled_computers=org.eclipse.cdt.ui.textProposalCategory\u0000org.eclipse.cdt.ui.parserProposalCategory\u0000
+/instance/org.eclipse.cdt.core.prj-myLab5/indexer/preferenceScope=0
+/instance/org.eclipse.cdt.dsf.ui/useAnnotationsPrefPage=true
+/instance/org.eclipse.egit.core/GitRepositoriesView.GitDirectories=C\:\\Users\\vagrant\\D1-workspace\\.git;
+/instance/org.eclipse.ui.workbench/org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<org.eclipse.ui.commands>\r\n<keyBinding contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+B"/>\r\n<keyBinding contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+B"/>\r\n<keyBinding commandId\="org.eclipse.ui.project.buildAll" contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+A CTRL+B"/>\r\n<keyBinding commandId\="org.eclipse.ui.project.buildProject" contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+B"/>\r\n<keyBinding commandId\="org.eclipse.debug.ui.commands.OpenRunConfigurations" contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+R"/>\r\n</org.eclipse.ui.commands>
+@org.eclipse.jsch.core=1.1.402.v20131127-1657
+/instance/org.eclipse.debug.ui/preferredTargets=org.eclipse.cdt.debug.ui.toggleCBreakpointTarget\:org.eclipse.cdt.debug.ui.toggleCBreakpointTarget|
+/instance/org.eclipse.cdt.core.prj-lab7/indexer/preferenceScope=0
+/instance/org.eclipse.ui.ide/EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
+/instance/org.eclipse.cdt.ui/semanticHighlighting.globalVariable.enabled=true
+/instance/org.eclipse.cdt.ui/semanticHighlighting.macroDefinition.bold=true
+/instance/org.eclipse.cdt.debug.core/org.eclipse.cdt.debug.core.cDebug.default_source_containers=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<sourceLookupDirector>\r\n<sourceContainers duplicates\="false">\r\n<container memento\="AbsolutePath" typeId\="org.eclipse.cdt.debug.core.containerType.absolutePath"/>\r\n<container memento\="programRelativePath" typeId\="org.eclipse.cdt.debug.core.containerType.programRelativePath"/>\r\n<container memento\="&lt;?xml version\=&quot;1.0&quot; encoding\=&quot;UTF-8&quot; standalone\=&quot;no&quot;?&gt;&\#13;&\#10;&lt;project referencedProjects\=&quot;true&quot;/&gt;&\#13;&\#10;" typeId\="org.eclipse.cdt.debug.core.containerType.project"/>\r\n</sourceContainers>\r\n</sourceLookupDirector>\r\n
+/instance/org.eclipse.cdt.ui/semanticHighlighting.macroDefinition.color=128,128,64
+/instance/org.eclipse.cdt.managedbuilder.core/properties/myRIO\ Template.cdt.managedbuild.target.gnu.cross.exe.2053554138/cdt.managedbuild.config.gnu.cross.exe.debug.1479929453=cdt.managedbuild.tool.gnu.assembler.mingw.base.993972965\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.cygwin.base.963570088\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.cpp.linker.1682579729\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.mingw.base.1064453162\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.1228939927\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.cpp.compiler.1863536505\=rebuildState\\\=false\\r\\n\r\norg.eclipse.cdt.msvc.lib.2023376349\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.config.gnu.cross.exe.debug.1479929453\=rcState\\\=0\\r\\nrebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.compiler.base.221831681\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.cygwin.base.1487066442\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.assembler.base.140731143\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.c.compiler.432699661\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.240253154\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base.1684034311\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.toolchain.gnu.mingw.base.1123946163\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.archiver.984024696\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.toolchain.gnu.cygwin.base.863725708\=rebuildState\\\=true\\r\\n\r\norg.eclipse.cdt.msvc.link.dll.debug.57930884\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.mingw.base.1916686313\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.linker.mingw.base.1866333348\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.toolchain.gnu.mingw.base.1960328992\=rebuildState\\\=true\\r\\n\r\norg.eclipse.cdt.msvc.cl.c.dll.debug.1229647468\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.cygwin.base.1999747191\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.base.1286057628\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.base.1131448069\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.linker.mingw.base.992544425\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.mingw.base.1282132703\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.assembler.mingw.base.1479824139\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.linker.cygwin.base.1426492887\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.compiler.mingw.base.1713592181\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.toolchain.gnu.base.1811482637\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.mingw.base.2019523620\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.linker.mingw.base.681984218\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.assembler.1626349341\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.base.1307375015\=rebuildState\\\=false\\r\\n\r\norg.eclipse.cdt.msvc.cl.dll.debug.1761012618\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.toolchain.gnu.mingw.base.363943706\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.assembler.cygwin.base.841494708\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.cpp.linker.base.1641577426\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.mingw.base.1051891349\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.mingw.base.593627002\=rebuildState\\\=true\\r\\n\r\norg.eclipse.cdt.msvc.rc.dll.debug.1337410704\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.c.compiler.mingw.base.1968991789\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.toolchain.gnu.cross.exe.debug.1070375698\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.cross.c.linker.1446279383\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.archiver.mingw.base.1351383779\=rebuildState\\\=true\\r\\n\r\ncdt.managedbuild.tool.gnu.c.linker.mingw.base.1656295027\=rebuildState\\\=true\\r\\n\r\norg.eclipse.cdt.msvc.toolchain.dll.debug.134863253\=rebuildState\\\=false\\r\\n\r\ncdt.managedbuild.tool.gnu.assembler.mingw.base.1795911056\=rebuildState\\\=true\\r\\n\r\n
+@org.eclipse.ui=3.105.0.v20130522-1122
+/instance/org.eclipse.debug.ui/pref_state_memento.org.eclipse.debug.ui.DebugVieworg.eclipse.debug.ui.DebugView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<DebugViewMemento org.eclipse.debug.ui.BREADCRUMB_DROPDOWN_AUTO_EXPAND\="false"/>
+/instance/org.eclipse.ui.workbench/org.eclipse.ui.ide.systemDefault.org.eclipse.cdt.ui.editors.textfont=1|Courier New|9.75|1|WINDOWS|1|-13|0|0|0|700|0|0|0|0|3|2|1|49|Courier New;
+/instance/org.eclipse.cdt.core.prj-myLab8/indexer/preferenceScope=0
+@org.eclipse.cdt.managedbuilder.core=8.3.0.201402142303
+/instance/org.eclipse.rse.core/activeuserprofiles=DESKTOP-Q6FGAP9;Team
+/configuration/org.eclipse.ui.ide/SHOW_WORKSPACE_SELECTION_DIALOG=true
+/instance/org.eclipse.cdt.ui/c_single_line_comment=64,128,128
