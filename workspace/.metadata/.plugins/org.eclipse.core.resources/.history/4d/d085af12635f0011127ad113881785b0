@@ -21,7 +21,7 @@ int check_error(char *);
 char * fgets_keypad(char *, int);
 int getchar_keypad(void);
 int putchar_lcd(int);
-//char getkey(void);
+char getkey(void);
 
 /* definitions */
 
@@ -247,8 +247,6 @@ int putchar_lcd(int c)
 	static MyRio_Uart uart;
 	static int32_t status;
 	const uint32_t baud_rate = 19200;
-	uint8_t d[2];
-	int n=1;
 
 	//Initialize B Connector's UART on FIRST TIME only
 	if(firstrun != 1)
@@ -268,15 +266,7 @@ int putchar_lcd(int c)
 		firstrun = 1;
 	}
 
-	d[0] = (uint8_t)c;
-	status = Uart_Write(&uart,
-						d,n);
-
-	if(status<VI_SUCCESS)
-		return EOF;
-	else
-		return c;
-
+	return 1;
 }
 
 

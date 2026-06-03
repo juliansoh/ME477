@@ -270,7 +270,7 @@ int putchar_lcd(int c)
 
 	d[0] = (uint8_t)c;
 	status = Uart_Write(&uart,
-						d,n);
+						d,2);
 
 	if(status<VI_SUCCESS)
 		return EOF;
