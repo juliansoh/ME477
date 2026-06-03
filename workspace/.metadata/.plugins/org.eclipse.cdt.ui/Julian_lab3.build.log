@@ -1,0 +1,14 @@
+21:39:06 **** Incremental Build of configuration Debug for project Julian_lab3 ****
+Info: Internal Builder is used for build
+arm-nilrt-linux-gnueabi-gcc -DMyRio_1900 "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-IC:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi/usr/include" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" -O0 -g3 -Wall -c -fmessage-length=0 -mfpu=vfpv3 -mfloat-abi=softfp "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o main.o "..\\main.c" 
+..\main.c: In function 'putchar_lcd':
+..\main.c:248:10: warning: unused variable 'status' [-Wunused-variable]
+  int32_t status;
+          ^
+..\main.c:247:20: warning: variable 'uart' set but not used [-Wunused-but-set-variable]
+  static MyRio_Uart uart;
+                    ^
+arm-nilrt-linux-gnueabi-gcc "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o Julian_lab3 main.o "C_Support\\NiFpga.o" "C_Support\\MyRio.o" "C_Support\\IRQConfigure.o" -ldl -lm -lT1 -lvisa -lpthread 
+
+21:39:08 Build Finished (took 1s.680ms)
+

@@ -1,14 +1,6 @@
 #
-#Mon Jun 01 20:31:39 PDT 2026
-C_Support/NiFpga_MyRio1900Fpga60.h=1
-Debug/C_Support/IRQConfigure.o=1
-C_Support/MyRio.c=1
-C_Support/IRQConfigure.h=1
-C_Support/MyRio1900.h=1
-C_Support/NiFpga.h=1
+#Tue Jun 02 21:27:46 PDT 2026
 Debug/C_Support/MyRio.o=1
 Debug/C_Support/NiFpga.o=1
-C_Support/IRQConfigure.c=1
-C_Support/NiFpga.c=1
 Debug/libT1.a=1
-C_Support/MyRio.h=1
+Debug/C_Support/IRQConfigure.o=1

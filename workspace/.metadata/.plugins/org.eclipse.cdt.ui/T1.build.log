@@ -1,12 +1,10 @@
-20:31:38 **** Rebuild of configuration Debug for project T1 ****
+21:27:45 **** Incremental Build of configuration Debug for project T1 ****
 Info: Internal Builder is used for build
-arm-nilrt-linux-gnueabi-gcc -DMyRio_1900 "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" -O0 -g3 -Wall -c -fmessage-length=0 -o "C_Support\\NiFpga.o" "..\\..\\C Support for myRIO\\source\\NiFpga.c" 
-In file included from ..\..\C Support for myRIO\source\NiFpga.h:182:0,
-                 from ..\..\C Support for myRIO\source\NiFpga.c:9:
-c:\build\17.0\arm\sysroots\i686-nilrtsdk-mingw32\usr\lib\arm-nilrt-linux-gnueabi\gcc\arm-nilrt-linux-gnueabi\4.9.2\include\stdint.h:9:26: fatal error: stdint.h: No such file or directory
- # include_next <stdint.h>
-                          ^
+arm-nilrt-linux-gnueabi-gcc -DMyRio_1900 "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" -O0 -g3 -Wall -c -fmessage-length=0 -o "C_Support\\MyRio.o" "..\\..\\C Support for myRIO\\source\\MyRio.c" 
+..\..\C Support for myRIO\source\MyRio.c:9:19: fatal error: stdio.h: No such file or directory
+ #include <stdio.h>
+                   ^
 compilation terminated.
 
-20:31:39 Build Finished (took 1s.121ms)
+21:27:46 Build Finished (took 510ms)
 
