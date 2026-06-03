@@ -31,7 +31,7 @@
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1059968945" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="MyRio_1900"/>
 								</option>
-								<option id="gnu.c.compiler.option.misc.other.1981633479" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -mfpu=vfpv3 -mfloat-abi=softfp --sysroot=${env_var:LIB_PATH}" valueType="string"/>
+								<option id="gnu.c.compiler.option.misc.other.1981633479" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -mfpu=vfpv3 -mfloat-abi=softfp --sysroot=${env_var:LIB_PATH} -DMyRio1900Fpga60" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.196032758" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1863536505" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">

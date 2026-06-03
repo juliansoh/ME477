@@ -1,5 +1,6 @@
 /*
  * myRIO 1900 Target Header File
+
  *
  * Definitions for myRIO 1900
  * This file should be included from "MyRio.h", never directly
@@ -8,7 +9,6 @@
  * National Instruments Corporation.
  * All rights reserved.
  */
-
 #ifndef MyRio1900_h_
 #define MyRio1900_h_
 
