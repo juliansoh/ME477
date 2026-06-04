@@ -365,12 +365,12 @@ char getkey(void)
                 break;            // exit column loop
             }
 
-            // Small delay before rescanning
+            // Small delay (optional, prevents rapid polling)
             wait();
         }
     }
 
-    // Wait for key releas
+    // Wait for key release (debounce)
     while (Dio_ReadBit(&ch[r + 4]) == false)
     {
         wait();
