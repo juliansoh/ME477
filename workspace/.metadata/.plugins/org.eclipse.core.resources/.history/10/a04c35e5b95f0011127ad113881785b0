@@ -10,7 +10,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include "MyRio.h"
 #include "T1.h"
 #include "DIO.h"
@@ -23,7 +22,6 @@ char * fgets_keypad(char *, int);
 int getchar_keypad(void);
 int putchar_lcd(int);
 char getkey(void);
-void wait(void);
 
 /* definitions */
 
@@ -296,16 +294,6 @@ char getkey(void)
 	static MyRio_Dio ch[8];
 	static int firstrun;
 	int i;
-	int r=0, c=0;	//rows and columns
-	bool b;
-
-	//Key Code Lookup Table - table[r][c]
-	const char table[4][4] = {
-			{'1','2','3', UP},
-			{'4','5','6', DN},
-			{'7','8','9', ENT},
-			{'0','.','-', DEL}
-	};
 
 	//Initialize the MyRio DIO array the first time once
 	if(firstrun != 1)
@@ -314,81 +302,10 @@ char getkey(void)
 		{
 			ch[i].dir = DIOB_70DIR;
 			ch[i].out = DIOB_70OUT;
-			ch[i].in = DIOB_70IN;
-			ch[i].bit = i;
+
 		}
 	}
 
-	//FPGA session was already open in main()
-	//So we are ready to start scanning
-	//Outer loop Set Each Column to low_voltage (false) one column at a time
-	//Inner loop scan all rows to see if a row is found to be low
-	//Columns ch[c] are 0-3
-	//Rows ch[r] are 4-7
-
-	b = NiFpga_True;
-
-    // Initialize all channels to High-Z (input)
-    for (i = 0; i < 8; i++)
-    {
-        Dio_ReadBit(&ch[i]);
-    }
-
-    // Main scanning loop
-    while (b == true)
-    {
-        // Loop through columns (c = 0 to 3)
-        for (c = 0; c < 4; c++)
-        {
-            // Set ALL columns to High-Z
-            for (i = 0; i < 4; i++)
-            {
-                Dio_ReadBit(&ch[i]);   // set column i to input (High-Z)
-            }
-
-            // Drive current column LOW
-            Dio_WriteBit(&ch[c], NiFpga_False);
-
-            // Scan rows (r = 0 to 3)
-            for (r = 0; r < 4; r++)
-            {
-                b = Dio_ReadBit(&ch[r + 4]);   // read row pin
-
-                if (b == false)   // LOW -> key detected
-                {
-                    break;        // exit row loop
-                }
-            }
-
-            if (b == false)
-            {
-                break;            // exit column loop
-            }
-
-            // Small delay (optional, prevents rapid polling)
-            wait();
-        }
-    }
-
-    // Wait for key release (debounce)
-    while (Dio_ReadBit(&ch[r + 4]) == false)
-    {
-        wait();
-    }
-
-    // Return detected key
-    return table[r][c];
-}
-
-void wait(void)	//Wait function
-{
-	uint32_t i;
-	i=417000;
-	while(i>0)
-	{
-		i--;
-	}
-	return;
 }
 
 

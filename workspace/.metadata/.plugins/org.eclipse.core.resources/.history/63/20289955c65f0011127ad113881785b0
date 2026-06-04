@@ -23,7 +23,6 @@ char * fgets_keypad(char *, int);
 int getchar_keypad(void);
 int putchar_lcd(int);
 char getkey(void);
-void wait(void);
 
 /* definitions */
 
