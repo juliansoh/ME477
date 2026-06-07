@@ -105,7 +105,7 @@ oscilloscope.
 
 \section{Introduction} 
 \label{sec:introduction}
-We built a a finite state machine to control the speed of a DC motor by using a controllable signal to an
+We built a a Finite State Machine (FSM) to control the speed of a DC motor by using a controllable signal to an
 amplifier that will in turn draw from a larger power source in order to produce controllable power
 to drive a DC motor, as shown in \autoref{fig:motor-driving}.
 
@@ -364,6 +364,18 @@ Describe how you made the measurements of lab problems L4.4
 and L4.5 and discuss any limitations in the accuracy of the timing of the output. In
 lab exercise 6, we will find ways of overcoming this limitation.
 
+\vspace{\baselineskip}
+Refer to \autoref{fig:PWM_waveform} that shows the screen of the oscilloscope. The measurements
+taken are shown to the right of the waveform: Period, +Width, and +Duty.
+
+These measurements were taken by using the oscilloscope's measurement tools and selecting
+these parameters from the oscilloscope's menu.
+
+The limitations of using these tools is that the measurements are taken in real time
+and may be subject to noise and other sources of error. We could just take the average
+of the measurements to improve accuracy. Nevertheless, this approach is more accurate than 
+manual measurements or visual inspection.
+
 \subsection{Problem L4.7}
 After you have your code running as described above, try this:
 Record the velocity step response of the DC motor, save it to a file, and plot it in
@@ -387,6 +399,15 @@ MyRio_Encoder *encC0;
 EncoderC_initialize(myrio_session, encC0);
 \end{lstlisting}
 It's incorrect. What issues could this code cause, and why?
+
+\vspace{\baselineskip}
+The declaration initializes a pointer to the \texttt{MyRio\_Encoder} structure but does not allocate
+memory for the structure itself. Therefore, when the code attempts to read or write
+to this memory location, it will access invalid or nonexistent memory.
+
+Instead, the \texttt{MyRio\_Encoder} structure should be declared. The address operator
+can then be used to pass a pointer to the \texttt{MyRio\_Encoder} structure. See page 230
+of~\cite{Picone2024}.
 
 \section{Author Contributions}
 

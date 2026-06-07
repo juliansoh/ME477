@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  6 JUN 2026 23:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  7 JUN 2026 00:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1589,20 +1589,21 @@ Package pdftex.def Info: figures/PWM_waveform.jpeg  used on input line 319.
 (pdftex.def)             Requested size: 239.40962pt x 179.55222pt.
 
 
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-)
-(./report.bbl
+
 
 
 Package fancyhdr Warning: \footskip is too small (9.03374pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[3 <./figures/PWM_waveform.jpeg>])
+[3 <./figures/PWM_waveform.jpeg>]
+(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)
+(./report.bbl)
 
 
 
@@ -1626,7 +1627,7 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 Here is how much of TeX's memory you used:
  44756 strings out of 473190
  1032906 string characters out of 5715801
- 1723480 words of memory out of 5000000
+ 1718722 words of memory out of 5000000
  67142 multiletter control sequences out of 15000+600000
  616188 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1644,10 +1645,10 @@ xlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2
 025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/tex
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist
 /fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on report.pdf (4 pages, 3507007 bytes).
+Output written on report.pdf (4 pages, 3513867 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
+ 187 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
  37 named destinations out of 1000 (max. 500000)
  70 words of extra memory for PDF output out of 10000 (max. 10000000)
 
