@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
     // Initialize FSM initial conditions
     int clock = 0;
-    State state = LOW;
+    State state = LOW;   // or enum (better)
     int run_val = 0;         // logical PWM output
 
     // Turn motor off
@@ -89,6 +89,9 @@ int main(int argc, char **argv)
 
     user_input = double_in("M:");
     M = user_input;
+
+    //printf_lcd("\fNo. wait intervals: %f\nNo. of ON intervals: %f", N, M);
+
 
     // Start main state transition loop
     while(state != EXIT)
