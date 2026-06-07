@@ -311,6 +311,7 @@ and 5 to Vcc = 5 V when pressed, as shown in figure 4.19. Note: These channels h
 pull-down resistors. Use the oscilloscope to view the waveform produced by your
 program. For example, use N= 5, M= 3.
 
+\vspace{\baselineskip}
 From the oscilloscope, we observed the PMW waveform as shown in \autoref{fig:PWM_waveform}.
 
 \begin{figure}[htb]
@@ -321,7 +322,7 @@ From the oscilloscope, we observed the PMW waveform as shown in \autoref{fig:PWM
 \end{figure}
 
 \subsection{Problem L4.3}
-Compare your program’s printed output (on the LCD) to the
+Compare your program's printed output (on the LCD) to the
 steady state motor speed as measured with an optical tachometer.
 
 \subsection{Problem L4.4}
@@ -329,10 +330,34 @@ Use the oscilloscope to view the PWM waveform produced by
 your program, and to measure the actual length of a BTI. Is it what you expect? If
 not, why not?
 
+\vspace{\baselineskip}
+Refer to \autoref{fig:PWM_waveform} again and note the measurements taken on the waveform were:
+\begin{itemize}
+	\item Period: $46\ \mathrm{ms}$ ($N$)
+	\item Width (high): $30\ \mathrm{ms}$ ($M$)
+	\item Duty cycle: $65\%$
+	\item $M/N = 30/46 = 0.65$
+\end{itemize}
+
+We entered N=5 and M=3, so the expected duty cycle is 3/5 = 0.6 or 60\%. 
+The actual duty cycle is 65\%, which is slightly higher than expected. This could be due to timing inaccuracies in the program or the oscilloscope measurements.
+
+
 \subsection{Problem L4.5}
 Repeat lab problem L4.4 while printing the speed (pressing
 the switch). What does the oscilloscope show has happened to the length of the
-BTI? What’s going on!?
+BTI? What's going on!?
+
+\vspace{\baselineskip}
+
+When the print button is pressed, the oscilloscope shows that the length of the BTI (Base Time Interval) has changed. 
+The new measured values were:
+\begin{itemize}
+	\item Period: $56\ \mathrm{ms}$ ($N$)
+	\item Width (high): $46\ \mathrm{ms}$ ($M$)
+	\item Duty cycle: $81\%$
+	\item $M/N = 46/56 = 0.82$
+\end{itemize}
 
 \subsection{Problem L4.6}
 Describe how you made the measurements of lab problems L4.4
@@ -342,7 +367,7 @@ lab exercise 6, we will find ways of overcoming this limitation.
 \subsection{Problem L4.7}
 After you have your code running as described above, try this:
 Record the velocity step response of the DC motor, save it to a file, and plot it in
-MATLAB. Here’s how:
+MATLAB. Here's how:
 
 \subsection{Problem L4.8}
 You may have noticed that when M = 1, the FSM does not

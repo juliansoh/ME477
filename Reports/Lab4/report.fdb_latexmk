@@ -1,13 +1,14 @@
 # Fdb version 4
-["bibtex report"] 1780812656.00736 "report.aux" "report.bbl" "report" 1780812657.63651 0
+["bibtex report"] 1780814195.50772 "report.aux" "report.bbl" "report" 1780814206.57001 0
   "./report.bib" 1780798838.24212 845 97f993c86e85945012e8bf541ae536ef ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1780812657.33191 4562 f6cb548b420948244577a964becd967b "pdflatex"
+  "report.aux" 1780814206.30389 4562 321b578c70a7b619b94fbdb2a46f7a89 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1780812656.09477 "report.tex" "report.pdf" "report" 1780812657.63664 0
+["pdflatex"] 1780814205.07978 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab4/report.tex" "report.pdf" "report" 1780814206.57016 0
+  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab4/report.tex" 1780814204.86878 11890 a487e3edf0b6c9f5d632f2310c5c8ad4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -344,11 +345,11 @@
   "myfontstyle.sty" 1757906315.75131 511 da96ca531bb3be0955bfe35704ed6dcb ""
   "mymacros.sty" 1757906315.75122 663 63c3d61f7ba8bcf8c9a6fffb65f42de2 ""
   "mypackages.sty" 1757906315.75118 5792 ed21e291ad426fb42b8bb4cfd63bc326 ""
-  "report.aux" 1780812657.33191 4562 f6cb548b420948244577a964becd967b "pdflatex"
-  "report.bbl" 1780812656.09195 521 33ed3a1aa39f119a472e8124a3e75f65 "bibtex report"
-  "report.out" 1780812657.33503 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
-  "report.sta" 1780812657.28599 45 5977ee01d6365feae7164ffda30d2c8b "pdflatex"
-  "report.tex" 1780812653.66146 11006 21439b40fc718168d8aebc0c0895feb6 ""
+  "report.aux" 1780814206.30389 4562 321b578c70a7b619b94fbdb2a46f7a89 "pdflatex"
+  "report.bbl" 1780814195.62875 519 adb7739376afb50aa9c54cacbd1f8414 "bibtex report"
+  "report.out" 1780814206.30709 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
+  "report.sta" 1780814206.2995 45 5977ee01d6365feae7164ffda30d2c8b "pdflatex"
+  "report.tex" 1780814204.86878 11890 a487e3edf0b6c9f5d632f2310c5c8ad4 ""
   (generated)
   "report.aux"
   "report.log"
