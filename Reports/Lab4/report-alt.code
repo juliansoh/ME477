@@ -1,0 +1,45 @@
+#Install the lvm_read package
+%pip install git+https://github.com/ricopicone/lvm_read
+
+#Load the lvm_read package
+import lvm_read
+import numpy as np
+
+#Load datafile
+data = lvm_read.read('datafile001.lvm')
+
+#Now you can access the data using the data variable. 
+#where n_channels is 3 for us (time, source voltage, capacitor voltage):
+
+n_samples = len(data[0]['data'])
+n_channels = 3
+data_array = np.zeros((n_samples, n_channels))  # Initialize data array
+for i in range(n_channels):
+    data_array[:, i] = [p[0] for p in data[i]['data']]
+print(f"Data head:\n{data_array[:5]}")
+
+#Plotting the data
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.plot(data_array[:, 0], data_array[:, 1], label='Source Voltage')
+ax.plot(data_array[:, 0], data_array[:, 2], label='Capacitor Voltage')
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Voltage (V)')
+ax.legend()
+ax.grid(True)
+plt.draw()
+
+#To plot a theoretical function on the same plot, we could define a function such as the following:
+def theretical(t):
+    return 1 - np.exp(-t / 1)
+
+#Now plot both the theoretical capacitor voltage and the measured voltage together:
+fig, ax = plt.subplots()
+ax.plot(data_array[:, 0], data_array[:, 1], label='$V_S$')
+ax.plot(data_array[:, 0], data_array[:, 2], '.', label='$v_C$ Measured', alpha=0.5, markersize=4, marker='o', markerfacecolor='orange', markeredgecolor='none')
+ax.plot(data_array[:, 0], theretical(data_array[:, 0]), label='$v_C$ Theoretical')
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Voltage (V)')
+ax.legend()
+ax.grid(True)
+plt.show()
