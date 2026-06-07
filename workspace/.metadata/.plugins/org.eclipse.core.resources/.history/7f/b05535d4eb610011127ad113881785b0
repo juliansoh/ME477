@@ -1,0 +1,529 @@
+/*
+ * Lab 4
+ * Author: Julian Soh
+ * Date: June 6, 2026
+ * Description: Finite State Machine and the Open-Loop Control
+ */
+
+/* includes */
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "MyRio.h"
+#include "T1.h"
+#include "DIO.h"
+#include "UART.h"
+#include "Encoder.h"
+#include "matlabfiles.h"
+
+/* prototypes */
+double double_in(char *);
+int check_error(char *);
+char * fgets_keypad(char *, int);
+int getchar_keypad(void);
+int putchar_lcd(int);
+char getkey(void);
+void wait(void);
+void initializeSM(MyRio_Dio *, int);
+
+/* definitions */
+typedef enum {
+    LOW,
+    HIGH,
+    SPEED,
+    STOP,
+    EXIT
+} State;
+
+
+// Declare the bits globally and name them accordingly.
+MyRio_Dio run;
+MyRio_Dio printS;
+MyRio_Dio stopS;
+
+// Other global variables
+NiFpga_Session myrio_session;
+MyRio_Encoder encC0;
+
+
+int main(int argc, char **argv)
+{
+	NiFpga_Status status;
+	double user_input;
+	double N,M;
+
+    status = MyRio_Open(&myrio_session);	// open FPGA session. Encoder library needs the session
+    if (MyRio_IsNotSuccess(status)) return status;
+
+    // Initialize FSM
+    initializeSM(&run, 3);
+    initializeSM(&printS, 1);
+    initializeSM(&stopS, 5);
+
+    // Initialize encoder
+    EncoderC_initialize(myrio_session, &encC0);
+
+    // Initialize FSM initial conditions
+    int clock = 0;
+    State state = LOW;   // or enum (better)
+    int run_val = 0;         // logical PWM output
+
+    // Turn motor off
+    Dio_WriteBit(&run, run_val);
+
+    //Get N
+    printf_lcd("\f"); //clear screen
+
+    user_input = double_in("N:No. wait intervals?:");
+    N = user_input;
+
+    //Get M
+    printf_lcd("\f"); //clear screen
+
+    user_input = double_in("M:No. Intervals of ON?:");
+    M = user_input;
+
+    printf_lcd("\fNo. wait intervals: %f\nNo. of ON intervals: %f", N, M);
+
+
+    // Start main state transition loop
+
+
+
+	status = MyRio_Close();						// close FPGA session
+
+	return status;
+
+}
+
+
+void initializeSM(MyRio_Dio *channel, int bit)
+{
+    channel->dir = DIOC_70DIR;
+    channel->out = DIOC_70OUT;
+    channel->in  = DIOC_70IN;
+    channel->bit = bit;
+}
+
+void low(int *clock, State *state, int N)
+{
+	if(*clock == N)	//If clock = N, then set it to 0
+	{
+		*clock = 0;
+	    // Turn motor ON
+	    Dio_WriteBit(&run, 1);	//Also set run to 1
+
+        int print_val = Dio_ReadBit(&printS);
+        int stop_val  = Dio_ReadBit(&stopS);
+
+        if (stop_val == 1)
+        {
+            *state = STOP;
+        }
+        else if (print_val == 1)
+        {
+            *state = SPEED;
+        }
+        else
+        {
+            *state = HIGH;
+        }
+	}
+}
+
+void high(int *clock, State *state, int M)
+{
+	if(*clock == M)
+	{
+		Dio_WriteBit(&run, 0);
+		*state = LOW;
+	}
+}
+
+double vel(void)
+{
+	static int prev_count;
+	static int firstcall;
+    int32_t curr_count;
+    int32_t diff;
+
+    // Step 1: Read current encoder count
+    curr_count = Encoder_Counter(&encC0);
+
+    // Handle first call
+	if(firstcall != 1)
+	{
+	    prev_count = curr_count;
+	    firstcall = 1;
+	    return 0.0;
+	}
+
+	// Step 2: Compute speed difference between current and previous counts
+	diff = curr_count - prev_count;
+
+	// Step 3: Update Previous Count
+	prev_count = curr_count;
+
+	//Step 4: Convert to speed (RPM)
+	// 2048 per revolution
+	// 1 BTI per call
+
+    double rpm = (double)diff * (60.0 / 2048.0);
+
+    return rpm;
+}
+
+void stop(State *state)
+{
+	// 1. Stop the motor; set run to 0
+	Dio_WriteBit(&run, 0);
+
+	// 2. Clear the LCD and print the message: stopping
+	printf_lcd("\fstopping");
+
+	// 3. Set the current state to exit.
+	*state = EXIT;
+
+	// 4. Save the response to a MATLAB file
+
+}
+
+double double_in(char *prompt)
+{
+	//printf_lcd("%s",prompt);
+
+	//initialize error_code
+	int error_code = -1;
+
+	//initialize error_description[]
+	char *error_desc[] =
+	{
+			"No Error",
+			"Short. Try Again",
+			"Bad Key. Try Again",
+			"Bad Key. Try Again",
+			"Bad Key. Try Again"
+	};
+
+	//Reads from keypad and immediately echos what is typed.
+	char buffer[40];
+
+	do
+	{
+		printf_lcd("\f%s\n",prompt);
+		if(error_code !=0 && error_code !=-1)
+			//printf_lcd("Error Code: %d\n",error_code);
+			printf_lcd("Error %d: %s\n",error_code,error_desc[error_code]);
+
+		fgets_keypad(buffer, 40);
+
+		/*Error Checking stage
+		Error Codes
+		1 - Nothing entered
+		2 - UP or DOWN entered
+		3 - Minus sign (-) not the first character
+		4 - Multiple decimal points
+		*/
+
+		error_code = check_error(buffer);
+		if(error_code !=0)						//Buffer contains invalid characters so clear it.
+			memset(buffer, 0, sizeof(buffer));
+
+	}while(error_code != 0);
+
+	//No errors, so convert buffer value to a double and return the val
+	double val;
+	sscanf(buffer, "%lf", &val);
+	return val;
+}
+
+int check_error(char *input_buffer)
+{
+
+	//check for nothing entered
+	if(input_buffer[0]=='\0'){
+		return 1;
+	}
+
+	//check for UP or DOWN key pressed at any time during the input, which would generate a [ or ] character in the array
+	if(strpbrk(input_buffer,"[]") != NULL){
+		return 2;
+	}
+
+	//Check for minus sign anywhere other than the first character or multiple minus signs
+	char *minus_location = strchr(input_buffer, '-');
+
+	if(minus_location != NULL)	//There is a minus in the buffer
+	{
+		if(minus_location != input_buffer)	//It is not at the first position of the input_buffer
+			return 3;
+
+		if(strchr(input_buffer +1, '-') != NULL)	//After moving ahead of the first position, another - was found...
+			return 3;
+	}
+
+	//Check for multiple decimal points
+	char *f_dec, *l_dec;
+
+	f_dec = strchr(input_buffer, '.');	//Locate first decimal point
+	l_dec = strrchr(input_buffer, '.');	//Locate last decimal point
+
+	//If there is only one decimal point, f_dec should be equal to l_dec
+	if(f_dec != l_dec)
+		return 4;
+
+
+	return 0;
+}
+
+char* fgets_keypad(char *buf, int buflen)
+{
+    char *bufend = buf + buflen - 1;   // last valid position before '\0'
+    char *bp = buf;                    // buffer pointer
+    int c;
+
+    while ((c = getchar_keypad()) != EOF)   // keep reading until Enter
+    {
+        if (bp < bufend)   // still room in buffer
+        {
+            *bp = (char)c; // store character
+            bp++;          // advance pointer
+        }
+    }
+
+
+    // Append null terminator
+    *bp = '\0';
+
+    return buf;
+}
+
+int getchar_keypad(void)
+{
+    static char buf[20];      // buffer
+    static char *bp = buf;    // pointer into buffer
+    static int n;         // number of chars in buffer initialized to 0
+    static int notfirstrun;
+
+    int c;
+
+    // If buffer empty, fill it
+    if (n == 0 && notfirstrun != 1)		//This sets the condition that the user did not just hit Enter
+    {
+        bp = buf;   // reset pointer
+
+        while (1)	//Loop forever until Break (when Enter is pressed)
+        {
+            c = getkey();   // read raw key
+
+            if (c == ENT)   // ENTER pressed
+            {
+            	break;
+            }
+
+
+            // Handle BACKSPACE (DEL)
+            if (c == DEL)
+            {
+                if (n > 0)	//If n has items then backspace, otherwise do nothing
+                {
+                    // Move pointer back
+                    bp--;
+                    n--;
+
+                    // Erase from LCD
+                    putchar_lcd('\b');
+                    putchar_lcd(' ');
+                    putchar_lcd('\b');
+                }
+                continue;
+            }
+
+            // Normal character
+            if (n < 20)
+            {
+                *bp = (char)c;   // store in buffer
+                bp++;
+                n++;
+                putchar_lcd(c);  // echo to LCD
+
+            }
+        }
+
+        //We have filled the inner_buffer and user hit Enter so reset pointers and get ready to return chars to fgets_keypad()
+        bp = buf;
+        notfirstrun = 1;
+    }
+
+    //If user pressed enter and notfirstrun=1
+    if(n ==0 && notfirstrun ==1)
+    {
+    	notfirstrun = 2;
+    	*bp = '\0';
+    	bp=buf;
+    }
+
+    // Buffer not empty. So characters remain, return next one
+    if (n > 0)
+    {
+        n--;
+        return *bp++;
+    }
+
+    // Buffer empty. Signal end of line
+    return EOF;
+}
+
+int putchar_lcd(int c)
+{
+	//Now move cursor to the start of the next line.
+	if (c == '\n') {
+	    return putchar_lcd('\r');
+	}
+
+	static int firstrun;
+	static MyRio_Uart uart;
+	static int32_t status;
+	const uint32_t baud_rate = 19200;
+	uint8_t d[2];
+	int n=1;
+
+	//Initialize B Connector's UART on FIRST TIME only
+	if(firstrun != 1)
+	{
+		uart.name = "ASRL2::INSTR";				// UART on Connector B
+		uart.defaultRM = 0;						// def. resource manager
+		uart.session = 0;						// session reference
+		status = Uart_Open(&uart,				// port information
+						   baud_rate,			// baud rate bps (19,200 bps)
+						   8,					// no. of bits
+						   Uart_StopBits1_0,	// 1 stop bit
+						   Uart_ParityNone);	// no parity
+
+		if(status < VI_SUCCESS)
+			return EOF;
+
+		//Now move cursor to the start of the next line (for first time)
+		//d[0] = (int)('\n');
+		//printf_lcd("\n");
+
+		firstrun = 1;
+	}
+
+
+	d[0] = (uint8_t)c;
+	status = Uart_Write(&uart,
+						d,n);
+
+	if(status<VI_SUCCESS)
+		return EOF;
+	else
+		return c;
+
+}
+
+char getkey(void)
+{
+	static MyRio_Dio ch[8];
+	static int firstrun;
+	int i;
+	int r=0, c=0;	//rows and columns
+	bool b;
+
+	//Key Code Lookup Table - table[r][c]
+	const char table[4][4] = {
+			{'1','2','3', UP},
+			{'4','5','6', DN},
+			{'7','8','9', ENT},
+			{'0','.','-', DEL}
+	};
+
+	//Initialize the MyRio DIO array the first time once
+	if(firstrun != 1)
+	{
+		for(i=0; i<8; i++)
+		{
+			ch[i].dir = DIOB_70DIR;
+			ch[i].out = DIOB_70OUT;
+			ch[i].in = DIOB_70IN;
+			ch[i].bit = i;
+		}
+	}
+
+	//FPGA session was already open in main()
+	//So we are ready to start scanning
+	//Outer loop Set Each Column to low_voltage (false) one column at a time
+	//Inner loop scan all rows to see if a row is found to be low
+	//Columns ch[c] are 0-3
+	//Rows ch[r] are 4-7
+
+	b = NiFpga_True;
+
+    // Initialize all channels to High-Z (input)
+    for (i = 0; i < 8; i++)
+    {
+        Dio_ReadBit(&ch[i]);
+    }
+
+    // Main scanning loop
+    while (b == true)
+    {
+        // Loop through columns (c = 0 to 3)
+        for (c = 0; c < 4; c++)
+        {
+            // Set ALL columns to High-Z
+            for (i = 0; i < 4; i++)
+            {
+                Dio_ReadBit(&ch[i]);   // set column i to input (High-Z)
+            }
+
+            // Drive current column LOW
+            Dio_WriteBit(&ch[c], NiFpga_False);
+
+            // Scan rows (r = 0 to 3)
+            for (r = 0; r < 4; r++)
+            {
+                b = Dio_ReadBit(&ch[r + 4]);   // read row pin
+
+                if (b == false)   // LOW -> key detected
+                {
+                    break;        // exit row loop
+                }
+            }
+
+            if (b == false)
+            {
+                break;            // exit column loop
+            }
+
+            // Small delay before rescanning
+            wait();
+        }
+    }
+
+    // Wait for key releas
+    while (Dio_ReadBit(&ch[r + 4]) == false)
+    {
+        wait();
+    }
+
+    // Return detected key
+    return table[r][c];
+}
+
+void wait(void)	//Wait function
+{
+	uint32_t i;
+	i=417000;
+	while(i>0)
+	{
+		i--;
+	}
+	return;
+}
+
+
+
+
