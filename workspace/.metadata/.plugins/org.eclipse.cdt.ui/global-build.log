@@ -1,4 +1,4 @@
-18:12:33 **** Incremental Build of configuration Debug for project Julian_lab4 ****
+19:16:52 **** Incremental Build of configuration Debug for project Julian_lab4 ****
 Info: Internal Builder is used for build
 arm-nilrt-linux-gnueabi-gcc -DMyRio_1900 "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-IC:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi/usr/include" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" -O0 -g3 -Wall -c -fmessage-length=0 -mfpu=vfpv3 -mfloat-abi=softfp "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o main.o "..\\main.c" 
 ..\main.c: In function 'speed':
