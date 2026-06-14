@@ -185,7 +185,7 @@ void high(int *clock, State *state, int M)
 	// Always OFF in HIGH state
 	Dio_WriteBit(&run, 0);
 
-	if(*clock >= M)
+	if(*clock == M)
 	{
 		*clock = 0;
 		*state = LOW;
