@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex report"] 1780815706.14359 "report.aux" "report.bbl" "report" 1780816764.66528 0
+["bibtex report"] 1781404665.23959 "report.aux" "report.bbl" "report" 1781404981.06401 0
   "./report.bib" 1780798838.24212 845 97f993c86e85945012e8bf541ae536ef ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1780816764.36668 4584 d638c3498d4454fcc97fd769570119cb "pdflatex"
+  "report.aux" 1781404980.78709 5123 4d2b1feeaf49ef9bdc658ec9c5074c20 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1780816760.53789 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab4/report.tex" "report.pdf" "report" 1780816764.6654 0
-  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab4/report.tex" 1780816759.81182 13149 4e9a6d94b1288b6884fea93b0ef342b5 ""
+["pdflatex"] 1781404978.93275 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab4/report.tex" "report.pdf" "report" 1781404981.06415 0
+  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab4/report.tex" 1781404978.71282 14648 63ade8fff068f20ec69d3de8a5189760 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -337,6 +337,8 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "figures/Function-Assembly-mapping.png" 1780809650.25467 458721 fa18a974bb430ec6e72caead1a8095e0 ""
+  "figures/LCD_rpm.png" 1781404134.3403 6481165 2631a3d9b63e33a6a2f8a1be630772a6 ""
+  "figures/Optical_tachometer.png" 1781402808.97525 2809980 8ff450e5e0a3d4055257a8b4359c85e2 ""
   "figures/PWM_waveform.jpeg" 1780811167.85809 2818612 a53ab54de9ceeb9e81256652b017cfd5 ""
   "figures/Schematic_DIO_Output.png" 1780798057.8407 42465 f517a37c3b960547cae05ad9712e57f6 ""
   "figures/State_Transition_Diagram.png" 1780799448.4325 37903 cea1c6bb2a26ed8f4686274bab5a00d9 ""
@@ -345,11 +347,11 @@
   "myfontstyle.sty" 1757906315.75131 511 da96ca531bb3be0955bfe35704ed6dcb ""
   "mymacros.sty" 1757906315.75122 663 63c3d61f7ba8bcf8c9a6fffb65f42de2 ""
   "mypackages.sty" 1757906315.75118 5792 ed21e291ad426fb42b8bb4cfd63bc326 ""
-  "report.aux" 1780816764.36668 4584 d638c3498d4454fcc97fd769570119cb "pdflatex"
-  "report.bbl" 1780815706.22979 521 33ed3a1aa39f119a472e8124a3e75f65 "bibtex report"
-  "report.out" 1780816764.36947 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
-  "report.sta" 1780816764.36087 45 5977ee01d6365feae7164ffda30d2c8b "pdflatex"
-  "report.tex" 1780816759.81182 13149 4e9a6d94b1288b6884fea93b0ef342b5 ""
+  "report.aux" 1781404980.78709 5123 4d2b1feeaf49ef9bdc658ec9c5074c20 "pdflatex"
+  "report.bbl" 1781404665.46259 521 33ed3a1aa39f119a472e8124a3e75f65 "bibtex report"
+  "report.out" 1781404980.78914 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
+  "report.sta" 1781404980.60223 45 5977ee01d6365feae7164ffda30d2c8b "pdflatex"
+  "report.tex" 1781404978.71282 14648 63ade8fff068f20ec69d3de8a5189760 ""
   (generated)
   "report.aux"
   "report.log"

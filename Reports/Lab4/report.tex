@@ -327,6 +327,29 @@ From the oscilloscope, we observed the PMW waveform as shown in \autoref{fig:PWM
 Compare your program's printed output (on the LCD) to the
 steady state motor speed as measured with an optical tachometer.
 
+\vspace{\baselineskip}
+
+\autoref{fig:LCD_rpm} and \autoref{fig:Optical_tachometer} show the readings from the LCD to be comparable
+to the readings taken with the optical tachometer. This is when we used the frequency measurement from the
+oscilloscpe. However, when we used the calculated time of wait() of approximately 5ms, the rpm reported on the 
+LCD is about double what the ground truth value of the optical tachometer. This is because the BTI value is too small
+and is likely because the additional processor cycles for low() and print\_lcd() were not taken into consideration. The
+rpm reported correctly is about 1477 rpm.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/LCD_rpm.png}
+	\caption{Image of the LCD display showing the motor speed.}
+	\label{fig:LCD_rpm}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Optical_tachometer.png}
+	\caption{Image of the optical tachometer measurement.}
+	\label{fig:Optical_tachometer}
+\end{figure}
+
 \subsection{Problem L4.4}
 Use the oscilloscope to view the PWM waveform produced by
 your program, and to measure the actual length of a BTI. Is it what you expect? If
@@ -383,6 +406,10 @@ After you have your code running as described above, try this:
 Record the velocity step response of the DC motor, save it to a file, and plot it in
 MATLAB. Here's how:
 
+\vspace{\baselineskip}
+
+Please see separate .mat file in the repo.
+
 \subsection{Problem L4.8}
 You may have noticed that when M = 1, the FSM does not
 function as desired. Address the following issues:
@@ -392,6 +419,12 @@ function as desired. Address the following issues:
 	\item How would you modify the state transition table?
 	\item Modify your program to correct the $M = 1$ case. Test the result.
 \end{enumerate}
+
+\vspace{\baselineskip}
+
+When M=1, the motor starts spinning but when the print button is pressed, the motor stops. This is because the FSM is not properly handling the case where M=1.
+Pressing the Stop button does not terminate the program either. Looking at High(), we notice that condition clock == 1 is never met when
+M =1 because of clock++. Therefore, changing this condition to M>=1 fixed the problem.
 
 \subsection{Problem L4.9}
 A programmer has written following code in an attempt to
