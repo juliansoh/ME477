@@ -219,6 +219,7 @@ double vel(void)
 	static int firstcall=0;
     int32_t curr_count;
     int32_t diff;
+    double curr_time;
 
     // Step 1: Read current encoder count
     curr_count = Encoder_Counter(&encC0);

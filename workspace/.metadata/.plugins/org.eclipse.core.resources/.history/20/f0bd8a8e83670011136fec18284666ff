@@ -26,11 +26,6 @@ typedef enum {
     STOP,
     EXIT
 } State;
-// Wait() is approximately 5ms (calculated)
-#define LOOP_TIME_SEC 0.005
-// From Oscilloscope, measured frequency is ~57ms when printS button is pressed
-#define BTI_SEC 0.057
-
 
 /* prototypes */
 double double_in(char *);
@@ -44,7 +39,7 @@ void initializeSM(MyRio_Dio *, int);
 double vel(void);
 void low(int *, State *, int);
 void high(int *, State *, int);
-void speed(State *, int);
+void speed(State *);
 double vel(void);
 void stop(State *);
 
@@ -109,7 +104,7 @@ int main(int argc, char **argv)
     			break;
 
     		case SPEED:
-    			speed(&state, N);
+    			speed(&state);
     			break;
 
     		case STOP:
@@ -140,7 +135,7 @@ void initializeSM(MyRio_Dio *channel, int bit)
 
 void low(int *clock, State *state, int N)
 {
-	Dio_WriteBit(&run, 1);	//Also set run to 1
+    Dio_WriteBit(&run, 1);	//Also set run to 1
 
     /*Commenting these lines out because
      * getkey() was blocking the flow of this function
@@ -192,20 +187,14 @@ void high(int *clock, State *state, int M)
 	}
 }
 
-void speed(State *state, int N)
+void speed(State *state)
 {
 	// Call vel()
 	double speed = vel();
 
-	double BTI = N * LOOP_TIME_SEC;
-
 	// Convert to rpm
 
-	//The two rpm caluclations are based on calculated wait()
-	//versus what the value of frequency is, measured with oscilloscope
-
-	//double rpm = speed* (60.0 / (2048.0 * BTI));	//Measured with calculated wait()
-	double rpm = speed * (60 / (2048.0 * BTI_SEC));	//Measured with value from oscilloscope
+	double rpm = speed* (60.0 / 2048.0);
 
 	printf_lcd("\fspeed: %f rpm", rpm);
 
@@ -216,12 +205,16 @@ void speed(State *state, int N)
 double vel(void)
 {
 	static int32_t prev_count;
+	static double prev_time;
 	static int firstcall=0;
     int32_t curr_count;
     int32_t diff;
+    double curr_time;
+    double dt;
 
     // Step 1: Read current encoder count
     curr_count = Encoder_Counter(&encC0);
+    curr_time = Timer_Read();
 
     // Handle first call
 	if(firstcall != 1)
@@ -233,9 +226,11 @@ double vel(void)
 
 	// Step 2: Compute speed difference between current and previous counts
 	diff = curr_count - prev_count;
+	dt = curr_time - prev_time;
 
 	// Step 3: Update Previous Count
 	prev_count = curr_count;
+	prev_time = curr_time;
 
 	//Step 4: Convert to speed (RPM)
 	// 2048 per revolution
@@ -243,7 +238,7 @@ double vel(void)
 
     //double rpm = (double)diff * (60.0 / 2048.0);
 
-    return (double)diff;
+    return (double)diff/dt;
 }
 
 void stop(State *state)

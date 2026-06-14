@@ -26,11 +26,8 @@ typedef enum {
     STOP,
     EXIT
 } State;
-// Wait() is approximately 5ms (calculated)
+// Wait() is approximately 5ms
 #define LOOP_TIME_SEC 0.005
-// From Oscilloscope, measured frequency is ~57ms when printS button is pressed
-#define BTI_SEC 0.057
-
 
 /* prototypes */
 double double_in(char *);
@@ -201,11 +198,7 @@ void speed(State *state, int N)
 
 	// Convert to rpm
 
-	//The two rpm caluclations are based on calculated wait()
-	//versus what the value of frequency is, measured with oscilloscope
-
-	//double rpm = speed* (60.0 / (2048.0 * BTI));	//Measured with calculated wait()
-	double rpm = speed * (60 / (2048.0 * BTI_SEC));	//Measured with value from oscilloscope
+	double rpm = speed* (60.0 / (2048.0 * BTI));
 
 	printf_lcd("\fspeed: %f rpm", rpm);
 
@@ -219,6 +212,7 @@ double vel(void)
 	static int firstcall=0;
     int32_t curr_count;
     int32_t diff;
+    double curr_time;
 
     // Step 1: Read current encoder count
     curr_count = Encoder_Counter(&encC0);
