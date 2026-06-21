@@ -1,0 +1,446 @@
+\documentclass[10pt,twocolumn]{article}
+	
+\usepackage{myfontstyle}
+\usepackage{mypackages}
+\usepackage{mymacros}
+\usepackage{mycommands}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+%%% This defines a style for code blocks (listings package) ----------------
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+%%%----------------------------------------
+
+\begin{document}
+\thispagestyle{fancy1}
+
+%%% Title and Abstract------------------------
+\twocolumn[
+\begin{center}
+	\hrule
+	\vspace{3pt}
+	% Title:
+	{\sffamily\bfseries\Large
+		Report for Laboratory 5: Introduction to Interrupts
+	} \\
+	{\color{gray}
+		\vspace{3pt}
+		\hrule
+		\vspace{3pt}
+	}
+	{
+		\hspace*{\fill}
+		Julian Soh
+		\hspace*{\fill}
+%		Second Author
+%		\hspace*{\fill}
+%		Third Author
+%		\hspace*{\fill}
+%		Fourth Author    % uncomment these two lines if there's a fourth author
+%		\hspace*{\fill}
+	}\\
+	\vspace{3pt}
+	{\itshape
+		\hspace*{\fill}
+		Department of Mechanical Engineering, Saint Martin's University
+		\hspace*{\fill} \\
+		\hspace*{\fill}
+		ME/EE 477---Embedded Real-Time Computing for Mechanical Engineers
+		\hspace*{\fill}
+	}\\
+	\vspace{3pt}
+	{
+		\hspace*{\fill}
+		\today{} % today's date ... can type manually instead
+		\hspace*{\fill}
+	}
+	\vspace{3pt}
+	{\color{gray}\hrule}
+%	\vspace{2pt}
+\end{center}
+% Abstract:
+\begin{adjustwidth}{1.5in}{1.5in}
+{\small
+\noindent\textbf{Abstract.} \hspace{1em}
+This lab explored the use of interrupts and how interrupts are handled by the FPGA of the myRIO-1900.
+The interrupts will respond to an external signal, which is the trigger from an SPDT (Single Pole, Double Throw) switch.
+This lab also examined the mechanical properties of the SPDT switch with respect to the electrical signals it affects and how
+the use of a flip-flop to store the state of a switch will help smooth the transition and prevent noise from affecting the system. The
+flip-flop circuit used in this lab was a NAND debouncing circuit.
+}
+\end{adjustwidth}
+\vspace{9pt}
+\hrule
+\vspace{1\baselineskip}
+]
+
+%%% Body -------------------------
+
+\section{Introduction} 
+\label{sec:introduction}
+We connected an SPDT switch to the myRIO DIO$0$ on Connector A, as shown in \autoref{fig:SPDT-myRIO}. Connector A on the myRIO
+is pin 11. Other pins that were identified and used in this lab include:
+\begin{itemize}
+	\item DIO$0$ (pin 11)
+	\item GND (pin 12)
+	\item +3.3V(pin 33)
+\end{itemize}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/SPDT-myRIO.png}
+	\caption{Connecting SPDT directly to myRIO DIO$0$. \cite{Picone2024}.}
+	\label{fig:SPDT-myRIO}
+\end{figure}
+
+The objectives of this lab were:
+\begin{enumerate}
+	\item To implement a system with an external interrupt
+	\item To program an interrupt service routine
+	\item To program multiple threads
+	\item To prototype a digital logic circuit
+	\item To debounce a mechanical switch
+\end{enumerate}
+
+\section{Materials and Methods}
+
+\subsection{Materials}
+The materials used in this experiment were:
+\begin{itemize}
+	\item Windows 10 computer with myRIO support for C and Eclipse IDE.
+	\item NI myRIO-1900
+	\item Rigol DHO914S Digital Oscilloscope with $25 Mhz$ function generator
+	\item Rigol 712 DC power supply (to supply power to the NAND Integrated Circuit (IC)) \footnote{This was optional because we could have drawn power from the function generator of the oscilloscop or from the myRIO. But because we used this, we had to make sure the ground from this power supply is tied to the ground of the myRIO and the entire circuit so as to establish a common ground.}
+	\item breadboard
+	\item $1$x NAND Integrated Circuit (IC) - SN7438N
+	\item $4$x 2.2 k$\Omega$ resistors
+	\item Cables:
+		\subitem BNC with alligator clips
+		\subitem jumper cables
+\end{itemize}
+
+\subsection{Using a debouncing circuit}
+
+After experimenting with the SPDT switch connected directly to the myRIO and observing the signal characteristics on the oscilloscope,
+we implemented a debouncing circuit using a NAND gate to smooth the transitions and prevent noise from affecting the system. The schematic of
+the debouncing circuit is shown in \autoref{fig:Debouncing_Circuit}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Debouncing-circuit.png}
+	\caption{Schematic of the debouncing circuit using a NAND gate. \cite{Picone2024}.}
+	\label{fig:Debouncing_Circuit}
+\end{figure}
+
+The actual implementation of the debouncing circuit is shown in \autoref{fig:Debouncing_Circuit_actual}. The NAND IC was
+powered by the Rigol 712 DC power supply set at +3.3V with the ground connected to the myRIO. Pin 11 of the myRIO is connected to the
+output of the first NAND gate (pin 3).
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Debouncing-circuit-actual.jpeg}
+	\caption{Actual implementation of the debouncing circuit. \cite{Picone2024}.}
+	\label{fig:Debouncing_Circuit_actual}
+\end{figure}
+
+\section{Laboratory Exploration and Evaluation}
+
+The complete source code for the lab is available on GitHub at \url{https://github.com/juliansoh/ME477/blob/main/workspace/Julian_lab5/main.c}.
+
+A video demonstration of the lab is avaiable at \url{https://github.com/juliansoh/ME477/blob/main/Reports/Lab5/videos/IMG_0052.MOV}.
+
+\subsection{Problem L4.1}
+Determine the exact number of clock cycles for the wait()
+function of listing 4.2 to execute, accounting for all instructions (use table 4.6). From
+that, calculate the delay interval in milliseconds. A spreadsheet is convenient for
+making this calculation.
+
+The mapping of the wait() function to assembly code is shown in \autoref{fig:Function-Assembly-mapping}.
+The loop in the wait() function is highlighted in the dotted box and is the part of the code that executes 417000 times.
+
+The setup overhead of the wait() function only runs once, as does the loop cleanup after i == 0.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Function-Assembly-mapping.png}
+	\caption{Mapping the wait() to assembly code.}
+	\label{fig:Function-Assembly-mapping}
+\end{figure}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Instruction Type} & \textbf{Mnemonic} & \textbf{Clock Cycles} \\
+\hline
+Load/store registers & LDR, STR & 2 \\
+\hline
+Branch & BNE, B, BX & 0 \\
+\hline
+Stack & PUSH, LDMFD & 2 \\
+\hline
+Arithmetic & ADD, SUB, CMP & 1 \\
+\hline
+Move & MOV & 1 \\
+\hline
+No operation & NOP & 1 \\
+\hline
+\end{tabular}
+\caption{Opcode execution times (CPU cycles) for instructions used in \texttt{wait()}}
+\end{table}
+
+\textbf{Function overhead/setup}
+
+\begin{align*}
+\text{PUSH} &: 2 \\
+\text{ADD}  &: 1 \\
+\text{SUB}  &: 1 \\
+\text{MOV}  &: 1 \\
+\text{STR}  &: 2 \\
+\text{B}    &: 0
+\end{align*}
+
+\[
+\text{Total setup cycles} = 2 + 1 + 1 + 1 + 2 = 7
+\]
+
+\textbf{Loop interation}
+Each iteration of the loop executes the following instructions:
+
+\begin{align*}
+\text{LDR} &: 2 \text{ cycles} \\
+\text{SUB} &: 1 \text{ cycle} \\
+\text{STR} &: 2 \text{ cycles} \\
+\text{LDR} &: 2 \text{ cycles} \\
+\text{CMP} &: 1 \text{ cycle} \\
+\text{BNE} &: 0 \text{ cycles}
+\end{align*}
+
+\noindent Total cycles per loop iteration:
+\[
+2 + 1 + 2 + 2 + 1 + 0 = 8 \text{ cycles}
+\]
+
+\noindent The loop executes $417000$ times, so total loop cycles:
+\[
+417000 \times 8 = 3,336,000 \text{ cycles}
+\]
+
+\textbf{Exit instructions:}
+\begin{align*}
+\text{NOP}   &: 1 \\
+\text{ADD}   &: 1 \\
+\text{LDMFD} &: 2 \\
+\text{BX}    &: 0
+\end{align*}
+
+\[
+\text{Total exit cycles} = 1 + 1 + 2 = 4
+\]
+
+Therefore, the total clock cycles for wait() is:
+\[
+\text{Total cycles} = 3,336,000 + 7 + 4 = 3,336,011 \text{ cycles}
+\]
+
+\textbf{Time Calculation}
+The processor clock frequency is:
+\[
+f = 667\ \text{MHz}
+\]
+
+Clock period:
+\[
+T = \frac{1}{667 \times 10^6}
+\]
+
+Total execution time:
+\[
+t = \frac{3,336,011}{667 \times 10^6}
+\]
+
+\[
+t \approx 0.00500\ \text{seconds} = 5.00\ \text{ms}
+\]
+
+\subsection{Problem L4.2}
+Examine the circuit board attached to connector C of the myRIO.
+The normally open push-button switches, when closed, connect DIO channels 1
+and 5 to Vcc = 5 V when pressed, as shown in figure 4.19. Note: These channels have
+pull-down resistors. Use the oscilloscope to view the waveform produced by your
+program. For example, use N= 5, M= 3.
+
+\vspace{\baselineskip}
+From the oscilloscope, we observed the PMW waveform as shown in \autoref{fig:PWM_waveform}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/PWM_waveform.jpeg}
+	\caption{Image of the PWM waveform from the Oscilloscope.}
+	\label{fig:PWM_waveform}
+\end{figure}
+
+\subsection{Problem L4.3}
+Compare your program's printed output (on the LCD) to the
+steady state motor speed as measured with an optical tachometer.
+
+\vspace{\baselineskip}
+
+\autoref{fig:LCD_rpm} and \autoref{fig:Optical_tachometer} show the readings from the LCD to be comparable
+to the readings taken with the optical tachometer. This is when we used the frequency measurement from the
+oscilloscpe. However, when we used the calculated time of wait() of approximately 5ms, the rpm reported on the 
+LCD is about double what the ground truth value of the optical tachometer. This is because the BTI value is too small
+and is likely because the additional processor cycles for low() and print\_lcd() were not taken into consideration. The
+rpm reported correctly is about 1477 rpm.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/LCD_rpm.png}
+	\caption{Image of the LCD display showing the motor speed.}
+	\label{fig:LCD_rpm}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Optical_tachometer.png}
+	\caption{Image of the optical tachometer measurement.}
+	\label{fig:Optical_tachometer}
+\end{figure}
+
+\subsection{Problem L4.4}
+Use the oscilloscope to view the PWM waveform produced by
+your program, and to measure the actual length of a BTI. Is it what you expect? If
+not, why not?
+
+\vspace{\baselineskip}
+Refer to \autoref{fig:PWM_waveform} again and note the measurements taken on the waveform were:
+\begin{itemize}
+	\item Period: $46\ \mathrm{ms}$ ($N$)
+	\item Width (high): $30\ \mathrm{ms}$ ($M$)
+	\item Duty cycle: $65\%$
+	\item $M/N = 30/46 = 0.65$
+\end{itemize}
+
+We entered N=5 and M=3, so the expected duty cycle is 3/5 = 0.6 or 60\%. 
+The actual duty cycle is 65\%, which is slightly higher than expected. This could be due to timing inaccuracies in the program or the oscilloscope measurements.
+
+
+\subsection{Problem L4.5}
+Repeat lab problem L4.4 while printing the speed (pressing
+the switch). What does the oscilloscope show has happened to the length of the
+BTI? What's going on!?
+
+\vspace{\baselineskip}
+
+When the print button is pressed, the oscilloscope shows that the length of the BTI (Base Time Interval) has changed. 
+The new measured values were:
+\begin{itemize}
+	\item Period: $56\ \mathrm{ms}$ ($N$)
+	\item Width (high): $46\ \mathrm{ms}$ ($M$)
+	\item Duty cycle: $81\%$
+	\item $M/N = 46/56 = 0.82$
+\end{itemize}
+
+\subsection{Problem L4.6}
+Describe how you made the measurements of lab problems L4.4
+and L4.5 and discuss any limitations in the accuracy of the timing of the output. In
+lab exercise 6, we will find ways of overcoming this limitation.
+
+\vspace{\baselineskip}
+Refer to \autoref{fig:PWM_waveform} that shows the screen of the oscilloscope. The measurements
+taken are shown to the right of the waveform: Period, +Width, and +Duty.
+
+These measurements were taken by using the oscilloscope's measurement tools and selecting
+these parameters from the oscilloscope's menu.
+
+The limitations of using these tools is that the measurements are taken in real time
+and may be subject to noise and other sources of error. We could just take the average
+of the measurements to improve accuracy. Nevertheless, this approach is more accurate than 
+manual measurements or visual inspection.
+
+\subsection{Problem L4.7}
+After you have your code running as described above, try this:
+Record the velocity step response of the DC motor, save it to a file, and plot it in
+MATLAB. Here's how:
+
+\vspace{\baselineskip}
+
+Please see separate .mat file in the repo.
+
+\subsection{Problem L4.8}
+You may have noticed that when M = 1, the FSM does not
+function as desired. Address the following issues:
+\begin{enumerate}
+	\item What is wrong?
+	\item How would modifying the state transition diagram correct this problem?
+	\item How would you modify the state transition table?
+	\item Modify your program to correct the $M = 1$ case. Test the result.
+\end{enumerate}
+
+\vspace{\baselineskip}
+
+When M=1, the motor starts spinning but when the print button is pressed, the motor stops. This is because the FSM is not properly handling the case where M=1.
+Pressing the Stop button does not terminate the program either. Looking at High(), we notice that condition clock == 1 is never met when
+M =1 because of clock++. Therefore, changing this condition to M>=1 fixed the problem.
+
+\subsection{Problem L4.9}
+A programmer has written following code in an attempt to
+initialize the encoder.
+\begin{lstlisting}[language=C]
+MyRio_Encoder *encC0;
+EncoderC_initialize(myrio_session, encC0);
+\end{lstlisting}
+It's incorrect. What issues could this code cause, and why?
+
+\vspace{\baselineskip}
+The declaration initializes a pointer to the \texttt{MyRio\_Encoder} structure but does not allocate
+memory for the structure itself. Therefore, when the code attempts to read or write
+to this memory location, it will access invalid or nonexistent memory.
+
+Instead, the \texttt{MyRio\_Encoder} structure should be declared. The address operator
+can then be used to pass a pointer to the \texttt{MyRio\_Encoder} structure. See page 230
+of~\cite{Picone2024}.
+
+\section{Author Contributions}
+
+There is only one author for this report and lab.
+
+
+
+%%% References -------------------------
+
+\bibliographystyle{plainnat}
+\bibliography{report}
+
+%%% Appendices -------------------------
+
+\end{document}  
