@@ -177,258 +177,184 @@ The complete source code for the lab is available on GitHub at \url{https://gith
 
 A video demonstration of the lab is avaiable at \url{https://github.com/juliansoh/ME477/blob/main/Reports/Lab5/videos/IMG_0052.MOV}.
 
-\subsection{Problem L4.1}
-Determine the exact number of clock cycles for the wait()
-function of listing 4.2 to execute, accounting for all instructions (use table 4.6). From
-that, calculate the delay interval in milliseconds. A spreadsheet is convenient for
-making this calculation.
+\subsection{Problem L5.1}
+Write and debug the \texttt{main()} and \texttt{DI\_ISR()} functions
+described in section L5.2.
 
-The mapping of the wait() function to assembly code is shown in \autoref{fig:Function-Assembly-mapping}.
-The loop in the wait() function is highlighted in the dotted box and is the part of the code that executes 417000 times.
+\vspace{\baselineskip}
+See code at \url{https://github.com/juliansoh/ME477/blob/main/workspace/Julian_lab5/main.c}.
 
-The setup overhead of the wait() function only runs once, as does the loop cleanup after i == 0.
+
+
+\subsection{Problem L5.2}
+Provide an interrupt signal by connecting the SPDT switch on
+the circuit bread board to DIO0 of connector A, as shown in figure 5.15. Notice that
+pressing the switch causes a falling edge signal to be applied to the DIO0 input. Try
+your program now. What happens? This undesirable phenomenon is caused by the
+“bounce” of the mechanical switch. See \autoref{fig:SPDT-myRIO}.
+
+Adjust the oscilloscope to trigger only on a high-to-low transition of the IRQ
+signal. Observe several of the transitions. Typically, what length of time is required
+for the transition to settle at the low level? How many triggers occur during the
+settling?
+
+\vspace{\baselineskip}
+When the SPDT switched was pressed, as expected, DIO$0$ detected the signal change from high to low, thus
+triggering the interrupt. The Interrupt Service Routine (ISR) was then executed. However,  we noticed that it was not a clean transition, but rather a series of rapid transitions due to the switch bouncing.
+As a result, the interrupt was triggered multiple times, each triggering the ISR, resulting in printing 
+"Interrupt" on the LCD numberous times as shown in \autoref{fig:SPDT-Direct-LCD1} and \autoref{fig:SPDT-Direct-LCD2}.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.9\linewidth]{figures/Function-Assembly-mapping.png}
-	\caption{Mapping the wait() to assembly code.}
-	\label{fig:Function-Assembly-mapping}
+	\includegraphics[width=.9\linewidth]{figures/SPDT-Direct-LCD1.png}
+	\caption{LCD display showing multiple ISR execution (1 of 2).}
+	\label{fig:SPDT-Direct-LCD1}
 \end{figure}
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/SPDT-Direct-LCD2.png}
+	\caption{LCD display showing multiple ISR execution (2 of 2).}
+	\label{fig:SPDT-Direct-LCD2}
+\end{figure}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Instruction Type} & \textbf{Mnemonic} & \textbf{Clock Cycles} \\
-\hline
-Load/store registers & LDR, STR & 2 \\
-\hline
-Branch & BNE, B, BX & 0 \\
-\hline
-Stack & PUSH, LDMFD & 2 \\
-\hline
-Arithmetic & ADD, SUB, CMP & 1 \\
-\hline
-Move & MOV & 1 \\
-\hline
-No operation & NOP & 1 \\
-\hline
-\end{tabular}
-\caption{Opcode execution times (CPU cycles) for instructions used in \texttt{wait()}}
-\end{table}
+Connecting the oscilloscope, we confirmed the signal went from HIGH to LOW (+$3.3V$ to $0V$) and
+also observed the presence of the switch bounce based on the multiple triggers observed during the settling time, 
+as shown in \autoref{fig:Rigol-SPDT-Direct1} and \autoref{fig:Rigol-SPDT-Direct2}. Therefore, instead of one press,
+the myRIO interpreted the signals as multiple presses.
 
-\textbf{Function overhead/setup}
+From what we observed, there were usually two triggers during settling, although there were a few instances
+where three or more triggers occured. The multiple firing of the ISR shown in \autoref{fig:SPDT-Direct-LCD2} is
+an example of when more than two triggers occured during the settling time.
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Rigol-SPDT-Direct1.png}
+	\caption{Observing switch bounce from the oscilloscope (1 of 2).}
+	\label{fig:Rigol-SPDT-Direct1}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Rigol-SPDT-Direct2.png}
+	\caption{Observing switch bounce from the oscilloscope (2 of 2) WITH measurements of settling time $\Delta BX$.}
+	\label{fig:Rigol-SPDT-Direct2}
+\end{figure}
+We used the cursor to measure the time between the initial trigger and the final stable state of the signal. As shown 
+in \autoref{fig:Rigol-SPDT-Direct2}, the settling time was approximately $566 \mu s$ (See the $\boldsymbol{\Delta BX}$ reading in the right pane of the oscilloscope).
+Measuring the settling time for the bounce captured in \autoref{fig:SPDT-Direct-LCD1} yielded a smaller number
+of $\Delta BX = 141.5 \mu s$, as shown in \autoref{fig:Rigol-SPDT-Direct-Measure2}. Nonetheless, in both cases, we noted
+that the settling times were very short and in rapid succession.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Rigol-SPDT-Direct-Measure2.png}
+	\caption{Another measurement of settling time $\Delta BX$.}
+	\label{fig:Rigol-SPDT-Direct-Measure2}
+\end{figure}
+
+\subsection{Problem L5.3}
+Correct the problem by replacing the switch in figure 5.15 with
+the debouncing circuit shown in figure 5.16. This circuit incorporates a TTL Quad
+open-collector NAND IC, (e.g., a SN7438N.)
+Caution: Be certain that $V_{dd}$ and GND are connected to the chip before wiring the
+rest of the circuit.
+Try your program again.
+
+\vspace{\baselineskip}
+The program now only fires the interrupt once per switch press, and as such, the ISR is executed only once per switch press. The oscilloscope 
+showed a clean, stable signal transition from HIGH to LOW without the multiple triggers observed previously, as can be seen in 
+\autoref{fig:Rigol-NAND}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Rigol-NAND.png}
+	\caption{Oscilloscope reading of the debounced signal.}
+	\label{fig:Rigol-NAND}
+\end{figure}
+
+\subsection{Problem L5.4}
+Consider the switch-debouncing circuit of figure 5.13 and the
+traces of the outputs/states $Q$and $Q^*$ shown in figure 5.14. Explain why each $Q$
+and $Q^*$ state transition occurs and how this debounces the circuit that you built in
+lab problem L5.3.
+
+\vspace{\baselineskip}
+Look at the two circuits we implemented in the lab, as portrayed by the schematic diagrams in 
+\autoref{fig:Two-circuits}.
+
+\subsubsection{Without Debouncing Circuit}
+
+Prior to implementing the debouncing circuit, when the switch was pressed, as depicted in \autoref{fig:Two-circuits}(a), 
+with $P$ connected to $DIO0$, the state of $P$ oscillated between 1 and 0 (high and low) when the switch is 
+pressed because it took time to stabilize the switch and during that time, it oscillated between NO and NC. This oscillation
+was captured by both the oscilloscope and the FPGA through $DIO0$.
+
+\subsubsection{With Debouncing Circuit - Initial Conditions}
+From \autoref{fig:Two-circuits}(b), this was the initial condition 
+when the switch was in the "not-pressed" state.
 \begin{align*}
-\text{PUSH} &: 2 \\
-\text{ADD}  &: 1 \\
-\text{SUB}  &: 1 \\
-\text{MOV}  &: 1 \\
-\text{STR}  &: 2 \\
-\text{B}    &: 0
+	\overline{S} = 1 \\
+	\overline{R} = 0
+\end{align*}
+The reason was because $V_{dd}$ flowed through the pull-up resistor then through $NO$ and to $\overline{S}$, thereby 
+making $\overline{S} = 1$. The switch was closed at $NC$ so $V_{dd}$ flowed through the pull-down 
+resistor to $GND$, thus $\overline{R} = 0$. Therefore, $Q^*$ will definitely be $1$ because of the NAND gate's logic.
+$Q^*$ was fed back into $\alpha$, and together with $\overline{S}=1$, the output $Q$ was $0$ because of the NAND gate's logic.
+\begin{align*}
+	\beta: Q^* &= 1 \\
+	\alpha: Q &= 0
 \end{align*}
 
-\[
-\text{Total setup cycles} = 2 + 1 + 1 + 1 + 2 = 7
-\]
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Two-circuits.png}
+	\caption{Two circuits for SPDT switch implemented in the lab. \cite{Picone2024}.}
+	\label{fig:Two-circuits}
+\end{figure}
 
-\textbf{Loop interation}
-Each iteration of the loop executes the following instructions:
+\subsubsection{Switch Pressed}
+When the switch was pressed, the circuit changed its state. The switch was now closed at $NO$ and open at $NC$. 
+This meant that $V_{dd}$ flowed through the pull-down resistor to $GND$ and therefore made $\overline{S} = 0$.
+Therefore, regardless of what the other input was for $\alpha$, $Q = 1$, which in turn fed into $\beta$.
+At the same time, the switch was now closed at $NC$, so $V_{dd}$ flowed through the pull-up resistor to $\overline{R} = 1$. 
+Since $Q = 1$ and $\overline{R} = 1$, the output $Q^*$ was $0$ because of the NAND gate's logic.
 
 \begin{align*}
-\text{LDR} &: 2 \text{ cycles} \\
-\text{SUB} &: 1 \text{ cycle} \\
-\text{STR} &: 2 \text{ cycles} \\
-\text{LDR} &: 2 \text{ cycles} \\
-\text{CMP} &: 1 \text{ cycle} \\
-\text{BNE} &: 0 \text{ cycles}
+	\beta: Q^* &= 0 \\
+	\alpha: Q &= 1
 \end{align*}
 
-\noindent Total cycles per loop iteration:
-\[
-2 + 1 + 2 + 2 + 1 + 0 = 8 \text{ cycles}
-\]
+\subsubsection{Switch Released}
+When the switch was released, the circuit returned to its initial state.
 
-\noindent The loop executes $417000$ times, so total loop cycles:
-\[
-417000 \times 8 = 3,336,000 \text{ cycles}
-\]
+\subsubsection{Debouncing vs Actual pressing of the switch}
+The NAND IC locked in the status of Q, which was also connected to $DIO0$ that was being monitored by the FPGA on the myRIO.
+The NAND flip-flop circuit ignored the noise as part of the lock-in mechanism. So even when the switch bounced, which affected Q in rapid succession,
+Q did not change. The NAND IC simply ignored the noise and held the last stable state.
 
-\textbf{Exit instructions:}
-\begin{align*}
-\text{NOP}   &: 1 \\
-\text{ADD}   &: 1 \\
-\text{LDMFD} &: 2 \\
-\text{BX}    &: 0
-\end{align*}
+The question then is, how does the NAND circuit distinguish between a legitimate switch press and a bounce? Could we not
+press the switch in rapid succession to simulate a bounce? For this, we look at what is definied by a legitimate
+switch press. The time interval for a legitimate switch press is typically longer than the duration of a bounce, 
+allowing the NAND circuit to distinguish between the two. A human pressing the swtich is ~50 to 200 ms. As we saw from 
+the $\Delta BX$ measurements in \autoref{fig:Rigol-SPDT-Direct-Measure2} and in \autoref{fig:Rigol-SPDT-Direct2}, the
+bounces were measured in $\mu s$. The human press is many thousands of times longer than the bounce duration. So while it is
+theoretically possible to simulate a bounce via rapid succession switch presses, we conclude that in reality, this is
+not physically possible, so there is no risk of encountering false negatives.
 
-\[
-\text{Total exit cycles} = 1 + 1 + 2 = 4
-\]
-
-Therefore, the total clock cycles for wait() is:
-\[
-\text{Total cycles} = 3,336,000 + 7 + 4 = 3,336,011 \text{ cycles}
-\]
-
-\textbf{Time Calculation}
-The processor clock frequency is:
-\[
-f = 667\ \text{MHz}
-\]
-
-Clock period:
-\[
-T = \frac{1}{667 \times 10^6}
-\]
-
-Total execution time:
-\[
-t = \frac{3,336,011}{667 \times 10^6}
-\]
-
-\[
-t \approx 0.00500\ \text{seconds} = 5.00\ \text{ms}
-\]
-
-\subsection{Problem L4.2}
-Examine the circuit board attached to connector C of the myRIO.
-The normally open push-button switches, when closed, connect DIO channels 1
-and 5 to Vcc = 5 V when pressed, as shown in figure 4.19. Note: These channels have
-pull-down resistors. Use the oscilloscope to view the waveform produced by your
-program. For example, use N= 5, M= 3.
+\subsection{Problem L5.5}
+In your own words, explain how the main program thread
+configures the interrupt thread, how it communicates with the interrupt thread
+during execution, and how the interrupt thread functions.
 
 \vspace{\baselineskip}
-From the oscilloscope, we observed the PMW waveform as shown in \autoref{fig:PWM_waveform}.
+We defined a global data structure (ThreadResource) to hold the necessary information for the interrupt, most importantly the IRQ number (irqNumber).
+We then declared an instance of ThreadResource in main() and gave the instance an arbitrary but unique irqNumber (in our case, $irqNumber = 2$).
+$DIO0$ was associated to the ThreadResource instance (irqThread0) and the irqNumber and was tasked to be triggered
+when a Falling Edge is detected on $DIO0$.
 
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=.9\linewidth]{figures/PWM_waveform.jpeg}
-	\caption{Image of the PWM waveform from the Oscilloscope.}
-	\label{fig:PWM_waveform}
-\end{figure}
-
-\subsection{Problem L4.3}
-Compare your program's printed output (on the LCD) to the
-steady state motor speed as measured with an optical tachometer.
-
-\vspace{\baselineskip}
-
-\autoref{fig:LCD_rpm} and \autoref{fig:Optical_tachometer} show the readings from the LCD to be comparable
-to the readings taken with the optical tachometer. This is when we used the frequency measurement from the
-oscilloscpe. However, when we used the calculated time of wait() of approximately 5ms, the rpm reported on the 
-LCD is about double what the ground truth value of the optical tachometer. This is because the BTI value is too small
-and is likely because the additional processor cycles for low() and print\_lcd() were not taken into consideration. The
-rpm reported correctly is about 1477 rpm.
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=.9\linewidth]{figures/LCD_rpm.png}
-	\caption{Image of the LCD display showing the motor speed.}
-	\label{fig:LCD_rpm}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=.9\linewidth]{figures/Optical_tachometer.png}
-	\caption{Image of the optical tachometer measurement.}
-	\label{fig:Optical_tachometer}
-\end{figure}
-
-\subsection{Problem L4.4}
-Use the oscilloscope to view the PWM waveform produced by
-your program, and to measure the actual length of a BTI. Is it what you expect? If
-not, why not?
-
-\vspace{\baselineskip}
-Refer to \autoref{fig:PWM_waveform} again and note the measurements taken on the waveform were:
-\begin{itemize}
-	\item Period: $46\ \mathrm{ms}$ ($N$)
-	\item Width (high): $30\ \mathrm{ms}$ ($M$)
-	\item Duty cycle: $65\%$
-	\item $M/N = 30/46 = 0.65$
-\end{itemize}
-
-We entered N=5 and M=3, so the expected duty cycle is 3/5 = 0.6 or 60\%. 
-The actual duty cycle is 65\%, which is slightly higher than expected. This could be due to timing inaccuracies in the program or the oscilloscope measurements.
-
-
-\subsection{Problem L4.5}
-Repeat lab problem L4.4 while printing the speed (pressing
-the switch). What does the oscilloscope show has happened to the length of the
-BTI? What's going on!?
-
-\vspace{\baselineskip}
-
-When the print button is pressed, the oscilloscope shows that the length of the BTI (Base Time Interval) has changed. 
-The new measured values were:
-\begin{itemize}
-	\item Period: $56\ \mathrm{ms}$ ($N$)
-	\item Width (high): $46\ \mathrm{ms}$ ($M$)
-	\item Duty cycle: $81\%$
-	\item $M/N = 46/56 = 0.82$
-\end{itemize}
-
-\subsection{Problem L4.6}
-Describe how you made the measurements of lab problems L4.4
-and L4.5 and discuss any limitations in the accuracy of the timing of the output. In
-lab exercise 6, we will find ways of overcoming this limitation.
-
-\vspace{\baselineskip}
-Refer to \autoref{fig:PWM_waveform} that shows the screen of the oscilloscope. The measurements
-taken are shown to the right of the waveform: Period, +Width, and +Duty.
-
-These measurements were taken by using the oscilloscope's measurement tools and selecting
-these parameters from the oscilloscope's menu.
-
-The limitations of using these tools is that the measurements are taken in real time
-and may be subject to noise and other sources of error. We could just take the average
-of the measurements to improve accuracy. Nevertheless, this approach is more accurate than 
-manual measurements or visual inspection.
-
-\subsection{Problem L4.7}
-After you have your code running as described above, try this:
-Record the velocity step response of the DC motor, save it to a file, and plot it in
-MATLAB. Here's how:
-
-\vspace{\baselineskip}
-
-Please see separate .mat file in the repo.
-
-\subsection{Problem L4.8}
-You may have noticed that when M = 1, the FSM does not
-function as desired. Address the following issues:
-\begin{enumerate}
-	\item What is wrong?
-	\item How would modifying the state transition diagram correct this problem?
-	\item How would you modify the state transition table?
-	\item Modify your program to correct the $M = 1$ case. Test the result.
-\end{enumerate}
-
-\vspace{\baselineskip}
-
-When M=1, the motor starts spinning but when the print button is pressed, the motor stops. This is because the FSM is not properly handling the case where M=1.
-Pressing the Stop button does not terminate the program either. Looking at High(), we notice that condition clock == 1 is never met when
-M =1 because of clock++. Therefore, changing this condition to M>=1 fixed the problem.
-
-\subsection{Problem L4.9}
-A programmer has written following code in an attempt to
-initialize the encoder.
-\begin{lstlisting}[language=C]
-MyRio_Encoder *encC0;
-EncoderC_initialize(myrio_session, encC0);
-\end{lstlisting}
-It's incorrect. What issues could this code cause, and why?
-
-\vspace{\baselineskip}
-The declaration initializes a pointer to the \texttt{MyRio\_Encoder} structure but does not allocate
-memory for the structure itself. Therefore, when the code attempts to read or write
-to this memory location, it will access invalid or nonexistent memory.
-
-Instead, the \texttt{MyRio\_Encoder} structure should be declared. The address operator
-can then be used to pass a pointer to the \texttt{MyRio\_Encoder} structure. See page 230
-of~\cite{Picone2024}.
+We then created a thread to monitor and catch $irqNumber = 2$, and when it catches this, it executes the corresponding interrupt service routine named
+\texttt{DI\_ISR}. The code on what to do when the interrupt is received is defined in the \texttt{DI\_ISR} function.
 
 \section{Author Contributions}
 

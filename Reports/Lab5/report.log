@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  21 JUN 2026 08:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  21 JUN 2026 20:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -601,9 +601,7 @@ Package: filehook 2022/10/25 v0.8b Hooks for input files
 Package: filehook-2020 2022/10/25 v0.8b Hooks for input files
 ))
 \c@currfiledepth=\count353
-)
-\sa@out=\write5
- (./report.sta) (/usr/local/texlive/2025/texmf-dist/tex/latex/gincltex/gincltex.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/gincltex/gincltex.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/svn-prov/svn-prov.sty
 Package: svn-prov 2010/04/24 v3.1862 Package Date/Version from SVN Keywords
 )
 Package: gincltex 2011/09/04 v0.3 Include external LaTeX files like graphics
@@ -1051,10 +1049,6 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
  on input line 42.
 
-(./report.sta)
-\openout5 = `report.sta'.
-
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1095,8 +1089,8 @@ Package caption Info: hypcap package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring ON on input line 42.
 (./report.out) (./report.out)
-\@outlinefile=\write6
-\openout6 = `report.out'.
+\@outlinefile=\write5
+\openout5 = `report.out'.
 
 LaTeX Font Info:    Trying to load font information for T1+phv on input line 103.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/t1phv.fd
@@ -1250,43 +1244,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--179
 [][]$\T1/cmtt/m/n/10 https : / / github . com / juliansoh / ME477 / blob / main /
  []
 
-<figures/Function-Assembly-mapping.png, id=75, 908.39375pt x 515.9275pt>
-File: figures/Function-Assembly-mapping.png Graphic file (type png)
-<use figures/Function-Assembly-mapping.png>
-Package pdftex.def Info: figures/Function-Assembly-mapping.png  used on input line 193.
-(pdftex.def)             Requested size: 239.40962pt x 135.97226pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \hbox (badness 5064) in paragraph at lines 185--186
+[]\T1/pplj/m/n/10 See code at [][]$\T1/cmtt/m/n/10 https : / / github . com / juliansoh / ME477 /
+ []
 
 
 
+<figures/SPDT-Direct-LCD1.png, id=78, 708.6475pt x 591.20876pt>
+File: figures/SPDT-Direct-LCD1.png Graphic file (type png)
+<use figures/SPDT-Direct-LCD1.png>
+Package pdftex.def Info: figures/SPDT-Direct-LCD1.png  used on input line 209.
+(pdftex.def)             Requested size: 239.40962pt x 199.72731pt.
+<figures/SPDT-Direct-LCD2.png, id=79, 708.6475pt x 580.1675pt>
+File: figures/SPDT-Direct-LCD2.png Graphic file (type png)
+<use figures/SPDT-Direct-LCD2.png>
+Package pdftex.def Info: figures/SPDT-Direct-LCD2.png  used on input line 216.
+(pdftex.def)             Requested size: 239.40962pt x 195.99725pt.
+<figures/Rigol-SPDT-Direct1.png, id=83, 1027.84pt x 602.25pt>
+File: figures/Rigol-SPDT-Direct1.png Graphic file (type png)
+<use figures/Rigol-SPDT-Direct1.png>
+Package pdftex.def Info: figures/Rigol-SPDT-Direct1.png  used on input line 232.
+(pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
+<figures/Rigol-SPDT-Direct2.png, id=84, 1027.84pt x 602.25pt>
+File: figures/Rigol-SPDT-Direct2.png Graphic file (type png)
+<use figures/Rigol-SPDT-Direct2.png>
+Package pdftex.def Info: figures/Rigol-SPDT-Direct2.png  used on input line 239.
+(pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
 
 
 LaTeX Font Info:    Font shape `T1/pplj/m/sl' in size <10> not available
-(Font)              Font shape `T1/pplj/m/it' tried instead on input line 289.
+(Font)              Font shape `T1/pplj/m/it' tried instead on input line 248.
 
 Package fancyhdr Warning: \footskip is too small (9.03374pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./figures/Debouncing-circuit-actual.jpeg> <./figures/Function-Assembly-mapping.png>]
-<figures/PWM_waveform.jpeg, id=91, 971.3088pt x 728.4816pt>
-File: figures/PWM_waveform.jpeg Graphic file (type jpg)
-<use figures/PWM_waveform.jpeg>
-Package pdftex.def Info: figures/PWM_waveform.jpeg  used on input line 307.
-(pdftex.def)             Requested size: 239.40962pt x 179.55222pt.
-<figures/LCD_rpm.png, id=94, 1126.2075pt x 907.39pt>
-File: figures/LCD_rpm.png Graphic file (type png)
-<use figures/LCD_rpm.png>
-Package pdftex.def Info: figures/LCD_rpm.png  used on input line 327.
-(pdftex.def)             Requested size: 239.40962pt x 192.88359pt.
-<figures/Optical_tachometer.png, id=95, 603.25375pt x 725.71124pt>
-File: figures/Optical_tachometer.png Graphic file (type png)
-<use figures/Optical_tachometer.png>
-Package pdftex.def Info: figures/Optical_tachometer.png  used on input line 334.
-(pdftex.def)             Requested size: 239.40962pt x 288.0093pt.
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./figures/Debouncing-circuit-actual.jpeg> <./figures/SPDT-Direct-LCD1.png> <./figures/SPDT-Direct-LCD2.png>]
+<figures/Rigol-SPDT-Direct-Measure2.png, id=105, 1027.84pt x 602.25pt>
+File: figures/Rigol-SPDT-Direct-Measure2.png Graphic file (type png)
+<use figures/Rigol-SPDT-Direct-Measure2.png>
+Package pdftex.def Info: figures/Rigol-SPDT-Direct-Measure2.png  used on input line 251.
+(pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
 
 
+<figures/Rigol-NAND.png, id=107, 1027.84pt x 602.25pt>
+File: figures/Rigol-NAND.png Graphic file (type png)
+<use figures/Rigol-NAND.png>
+Package pdftex.def Info: figures/Rigol-NAND.png  used on input line 271.
+(pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
 
 
 
@@ -1294,20 +1300,27 @@ Package fancyhdr Warning: \footskip is too small (9.03374pt):
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[3 <./figures/PWM_waveform.jpeg> <./figures/LCD_rpm.png>]
+[3 <./figures/Rigol-SPDT-Direct1.png> <./figures/Rigol-SPDT-Direct2.png> <./figures/Rigol-SPDT-Direct-Measure2.png> <./figures/Rigol-NAND.png>]
+<figures/Two-circuits.png, id=132, 533.995pt x 144.54pt>
+File: figures/Two-circuits.png Graphic file (type png)
+<use figures/Two-circuits.png>
+Package pdftex.def Info: figures/Two-circuits.png  used on input line 311.
+(pdftex.def)             Requested size: 239.40962pt x 64.80199pt.
 
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-) (./report.bbl)
+
+
+Underfull \hbox (badness 4205) in paragraph at lines 356--358
+[]\T1/pplj/m/n/10 We then cre-ated a thread to mon-i-tor and catch
+ []
+
+(./report.bbl)
 
 
 Package fancyhdr Warning: \footskip is too small (9.03374pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[4 <./figures/Optical_tachometer.png>] 
+[4 <./figures/Two-circuits.png>] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./report.aux)
  ***********
@@ -1318,18 +1331,18 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 44BEB5BAF89C683BDDCD54AA0A602F51;230.
  ) 
 Here is how much of TeX's memory you used:
- 44809 strings out of 473190
- 1033884 string characters out of 5715801
- 1723196 words of memory out of 5000000
- 67178 multiletter control sequences out of 15000+600000
- 627931 words of font info for 146 fonts, out of 8000000 for 9000
+ 44436 strings out of 473190
+ 1030632 string characters out of 5715801
+ 1558898 words of memory out of 5000000
+ 66820 multiletter control sequences out of 15000+600000
+ 626812 words of font info for 145 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 112i,12n,131p,794b,1290s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on report.pdf (4 pages, 15162582 bytes).
+ 112i,12n,131p,794b,928s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on report.pdf (4 pages, 6602936 bytes).
 PDF statistics:
- 198 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
- 80 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 95 words of extra memory for PDF output out of 10000 (max. 10000000)
 
