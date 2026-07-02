@@ -1,29 +1,7 @@
-14:26:39 **** Incremental Build of configuration Debug for project Julian_lab5 ****
+19:13:51 **** Incremental Build of configuration Debug for project Julian_lab6 ****
 Info: Internal Builder is used for build
 arm-nilrt-linux-gnueabi-gcc -DMyRio_1900 "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-IC:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi/usr/include" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" -O0 -g3 -Wall -c -fmessage-length=0 -mfpu=vfpv3 -mfloat-abi=softfp "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o main.o "..\\main.c" 
-arm-nilrt-linux-gnueabi-gcc "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o Julian_lab5 main.o "C_Support\\NiFpga.o" "C_Support\\MyRio.o" "C_Support\\IRQConfigure.o" -ldl -lm -lT1 -lvisa -lpthread 
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-14:48:02 **** Incremental Build of configuration Debug for project Julian_lab5 ****
-Info: Internal Builder is used for build
-arm-nilrt-linux-gnueabi-gcc -DMyRio_1900 "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-IC:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi/usr/include" "-IC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" -O0 -g3 -Wall -c -fmessage-length=0 -mfpu=vfpv3 -mfloat-abi=softfp "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o main.o "..\\main.c" 
-arm-nilrt-linux-gnueabi-gcc "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o Julian_lab5 main.o "C_Support\\NiFpga.o" "C_Support\\MyRio.o" "C_Support\\IRQConfigure.o" -ldl -lm -lT1 -lvisa -lpthread 
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
-Info: Nothing to build for Julian_lab5
+arm-nilrt-linux-gnueabi-gcc "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\C Support for myRIO\\source" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1\\lib" "-LC:\\Users\\vagrant\\Documents\\dev\\ME477\\workspace\\T1" "--sysroot=C:\\build\\17.0\\arm\\sysroots\\cortexa9-vfpv3-nilrt-linux-gnueabi" -o Julian_lab6 main.o "C_Support\\NiFpga.o" "C_Support\\MyRio.o" "C_Support\\IRQConfigure.o" -ldl -lm -lT1 -lvisa -lpthread 
+Info: Nothing to build for Julian_lab6
+Info: Nothing to build for Julian_lab6
+Info: Nothing to build for Julian_lab6
