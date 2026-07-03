@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex report"] 1782961346.71352 "report.aux" "report.bbl" "report" 1782961348.39579 0
+["bibtex report"] 1783038235.60702 "report.aux" "report.bbl" "report" 1783038374.85279 0
   "./report.bib" 1780798838.24212 845 97f993c86e85945012e8bf541ae536ef ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1782961348.07564 3093 2019a127396386f559a6013eb320a6fe "pdflatex"
+  "report.aux" 1783038374.57875 3402 a1c1b7d2a72c1fde15739d3b2faa9384 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1782961346.80892 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" "report.pdf" "report" 1782961348.39601 0
-  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" 1782961344.92845 10230 986ab8433d64ae565d73a37b46e75787 ""
+["pdflatex"] 1783038373.3298 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" "report.pdf" "report" 1783038374.85292 0
+  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" 1783038373.11013 10843 ac4941b0bb1135beb1b8bc326c4c5f00 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -62,6 +62,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb" 1336858727 22927 31e776418d6f3753a749eafbf9a8a2bf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb" 1215737283 175641 e30a691dc1402b08fd6535cf8a31e5b7 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb" 1215737283 169201 9ebf99020dde51a5086e186761a34e8f ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb" 1546638885 64555 1bdfd101450d8daa1682251ffcdf0074 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb" 1546638885 62231 6fa2851364e6117779162ea79cb96ef4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb" 1546638885 58411 be6be158edebf79e4cde3c52c70cc0ed ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb" 1136849748 35941 f27169cc74234d5bd5e4cca5abafaabb ""
@@ -334,14 +335,15 @@
   "figures/Lab60.png" 1782946090.25658 102481 33ef0a2b420b1b25ce93413fccbc17c8 ""
   "figures/Lab61.png" 1782946091.2343 100942 bd416e623113d61aafe44cb0001133b2 ""
   "figures/Lab62.png" 1782946091.25532 88708 ba7575f1a5b50fe620113d9fa13f0df4 ""
+  "figures/Lab63.png" 1783037927.03726 106485 998949ca72999062d96819fad1568f0e ""
   "mycommands.sty" 1757906315.75133 1545 1f448eaa0b6118fa712d6bae1e44fd1e ""
   "myfontstyle.sty" 1757906315.75131 511 da96ca531bb3be0955bfe35704ed6dcb ""
   "mymacros.sty" 1757906315.75122 663 63c3d61f7ba8bcf8c9a6fffb65f42de2 ""
   "mypackages.sty" 1782087041.30239 5779 986efdc1c81ededc8646e4e9b2287d35 ""
-  "report.aux" 1782961348.07564 3093 2019a127396386f559a6013eb320a6fe "pdflatex"
-  "report.bbl" 1782961346.80151 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
-  "report.out" 1782961348.07793 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
-  "report.tex" 1782961344.92845 10230 986ab8433d64ae565d73a37b46e75787 ""
+  "report.aux" 1783038374.57875 3402 a1c1b7d2a72c1fde15739d3b2faa9384 "pdflatex"
+  "report.bbl" 1783038235.75751 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
+  "report.out" 1783038374.58165 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
+  "report.tex" 1783038373.11013 10843 ac4941b0bb1135beb1b8bc326c4c5f00 ""
   (generated)
   "report.aux"
   "report.log"

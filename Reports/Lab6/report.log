@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  1 JUL 2026 20:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  2 JUL 2026 17:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1219,21 +1219,27 @@ Package pdftex.def Info: figures/Lab62.png  used on input line 195.
 (pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
 
 
-<figures/Lab61.png, id=65, 1027.84pt x 602.25pt>
-File: figures/Lab61.png Graphic file (type png)
-<use figures/Lab61.png>
-Package pdftex.def Info: figures/Lab61.png  used on input line 226.
+<figures/Lab63.png, id=65, 1027.84pt x 602.25pt>
+File: figures/Lab63.png Graphic file (type png)
+<use figures/Lab63.png>
+Package pdftex.def Info: figures/Lab63.png  used on input line 218.
 (pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
-(./report.bbl
+
 
 LaTeX Font Info:    Font shape `T1/pplj/m/sl' in size <10> not available
-(Font)              Font shape `T1/pplj/m/it' tried instead on input line 1.
+(Font)              Font shape `T1/pplj/m/it' tried instead on input line 227.
 
 Package fancyhdr Warning: \footskip is too small (9.03374pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[2 <./figures/Lab60.png> <./figures/Lab62.png>]
+[2 <./figures/Lab60.png> <./figures/Lab62.png> <./figures/Lab63.png>]
+<figures/Lab61.png, id=92, 1027.84pt x 602.25pt>
+File: figures/Lab61.png Graphic file (type png)
+<use figures/Lab61.png>
+Package pdftex.def Info: figures/Lab61.png  used on input line 235.
+(pdftex.def)             Requested size: 239.40962pt x 140.27898pt.
+ (./report.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
@@ -1259,18 +1265,18 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 44BEB5BAF89C683BDDCD54AA0A602F51;230.
  ) 
 Here is how much of TeX's memory you used:
- 44707 strings out of 473190
- 1031446 string characters out of 5715801
- 1722359 words of memory out of 5000000
- 67104 multiletter control sequences out of 15000+600000
- 612556 words of font info for 114 fonts, out of 8000000 for 9000
+ 44719 strings out of 473190
+ 1031658 string characters out of 5715801
+ 1722458 words of memory out of 5000000
+ 67112 multiletter control sequences out of 15000+600000
+ 614012 words of font info for 117 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  112i,11n,131p,794b,1296s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on report.pdf (3 pages, 380657 bytes).
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on report.pdf (3 pages, 462861 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 60 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 167 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
