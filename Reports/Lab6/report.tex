@@ -241,13 +241,85 @@ Using the oscilloscope in AC coupling mode, observe the frequency response by va
 Record the output amplitude and phase relative to the input at the following frequencies: $5$, $10$, $20$, $40$, $60$, $100$, $140$, and $200\,\text{Hz}$.
 
 \vspace{\baselineskip}
-This behavior was observed on the oscilloscope when the function generator was configured for a sine wave instead of a square wave, as shown in \autoref{fig:Lab61}.
+The frequency-response measurements are shown in \autoref{fig:L65_5}, \autoref{fig:L65_10}, \autoref{fig:L65_20}, \autoref{fig:L65_40}, \autoref{fig:L65_60}, \autoref{fig:L65_100}, \autoref{fig:L65_140}, and \autoref{fig:L65_200}.
+
+In each oscilloscope screenshot, the right-side \texttt{Result} panel is where the measured values are read:
+\texttt{Vpp(C2)} for output peak-to-peak amplitude and \texttt{Phase(r-r)(C1-C2)} for phase.
+
+\begin{table}[htb]
+\centering
+\caption{Measured frequency-response values from the oscilloscope in Problem L6.5.}
+\label{tab:L65_measured}
+\begin{tabular}{c c c}
+\hline
+Frequency (Hz) & \texttt{Vpp(C2)} & \texttt{Phase(r-r)(C1-C2)} \\
+\hline
+5   & 4.2330 V   & 15.347$^{\circ}$ \\
+10  & 4.7900 V   & 32.576$^{\circ}$ \\
+20  & 4.9141 V   & 67.855$^{\circ}$ \\
+40  & 3.0537 V   & 154.59$^{\circ}$ \\
+60  & 1.1369 V   & -156.44$^{\circ}$ \\
+100 & 272.18 mV  & -119.27$^{\circ}$ \\
+140 & 121.72 mV  & -127.62$^{\circ}$ \\
+200 & 64.914 mV  & -150.28$^{\circ}$ \\
+\hline
+\end{tabular}
+\end{table}
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.9\linewidth]{figures/Lab61.png}
-	\caption{Oscilloscope observation for Problem L6.5 with sine-wave input from the function generator.}
-	\label{fig:Lab61}
+	\includegraphics[width=.98\linewidth]{figures/L6_5_5Hz0.png}
+	\caption{Frequency-response measurement at $5\,\text{Hz}$: \texttt{Vpp(C2)} $=4.2330\,\text{V}$, \texttt{Phase(r-r)(C1-C2)} $=15.347^{\circ}$.}
+	\label{fig:L65_5}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_10Hz0.png}
+	\caption{Frequency-response measurement at $10\,\text{Hz}$: \texttt{Vpp(C2)} $=4.7900\,\text{V}$, \texttt{Phase(r-r)(C1-C2)} $=32.576^{\circ}$.}
+	\label{fig:L65_10}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_20Hz0.png}
+	\caption{Frequency-response measurement at $20\,\text{Hz}$: \texttt{Vpp(C2)} $=4.9141\,\text{V}$, \texttt{Phase(r-r)(C1-C2)} $=67.855^{\circ}$.}
+	\label{fig:L65_20}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_40Hz0.png}
+	\caption{Frequency-response measurement at $40\,\text{Hz}$: \texttt{Vpp(C2)} $=3.0537\,\text{V}$, \texttt{Phase(r-r)(C1-C2)} $=154.59^{\circ}$.}
+	\label{fig:L65_40}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_60Hz0.png}
+	\caption{Frequency-response measurement at $60\,\text{Hz}$: \texttt{Vpp(C2)} $=1.1369\,\text{V}$, \texttt{Phase(r-r)(C1-C2)} $=-156.44^{\circ}$.}
+	\label{fig:L65_60}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_100Hz0.png}
+	\caption{Frequency-response measurement at $100\,\text{Hz}$: \texttt{Vpp(C2)} $=272.18\,\text{mV}$, \texttt{Phase(r-r)(C1-C2)} $=-119.27^{\circ}$.}
+	\label{fig:L65_100}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_140Hz0.png}
+	\caption{Frequency-response measurement at $140\,\text{Hz}$: \texttt{Vpp(C2)} $=121.72\,\text{mV}$, \texttt{Phase(r-r)(C1-C2)} $=-127.62^{\circ}$.}
+	\label{fig:L65_140}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L6_5_200Hz0.png}
+	\caption{Frequency-response measurement at $200\,\text{Hz}$: \texttt{Vpp(C2)} $=64.914\,\text{mV}$, \texttt{Phase(r-r)(C1-C2)} current value $=-150.28^{\circ}$ (phase display fluctuates at this low-amplitude, high-noise condition).}
+	\label{fig:L65_200}
 \end{figure}
 
 \subsection{Problem L6.6}
