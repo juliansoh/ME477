@@ -211,6 +211,8 @@ Transfer the response data saved in \texttt{Lab6.mat} to your development comput
 Discuss how the measured and theoretical results differ, and explain likely causes of those differences.
 
 \vspace{\baselineskip}
+The Python post-processing code used for Problem L6.4 is available in the notebook at \url{https://github.com/juliansoh/ME477/blob/main/workspace/Julian_lab6/Reports/Lab6/data/Step-Response.ipynb}.
+
 The oscilloscope step-response measurement was shown in \autoref{fig:Lab63}.
 
 \begin{figure}[htb]
@@ -221,6 +223,17 @@ The oscilloscope step-response measurement was shown in \autoref{fig:Lab63}.
 \end{figure}
 
 We used the oscilloscope cursor functions to measure the step response. The cursors were placed at Ay and By at $-2\,\text{V}$ and $+2\,\text{V}$, corresponding to the $10\%$ and $90\%$ rise-time markers, and Ax and Bx were used to measure the step time. From \autoref{fig:Lab63}, the oscilloscope showed $\Delta X = \mathbf{10\,\text{ms}}$.
+
+The Python comparison plot of measured and theoretical step responses is shown in \autoref{fig:Lab64Python}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/Lab64-StepResponse-Python.png}
+	\caption{Measured versus theoretical step response for Problem L6.4 (Python post-processing of \texttt{lab6.csv}).}
+	\label{fig:Lab64Python}
+\end{figure}
+
+The post-processed step-response data in Python gave a measured $10\%-90\%$ rise time of approximately $9\,\text{ms}$, which is consistent with the oscilloscope cursor measurement of about $10\,\text{ms}$. A second-order continuous-time model fitted to the measured waveform produced a response that follows the overall trend well, including a small overshoot and settling behavior. However, the measured waveform is not identical to theory: the measured trace rises slightly more slowly at the beginning and shows small residual ripple/noise near the final value. These differences are expected and are mainly due to non-ideal hardware and implementation effects, including sensor/electronics noise, finite ADC resolution and sampling period, component tolerances, actuator saturation and dead-zone effects, and unmodeled dynamics that are not captured by the ideal continuous-time transfer-function model.
 
 \subsection{Problem L6.5}
 Using the oscilloscope in AC coupling mode, observe the frequency response by varying the frequency of a $5\,\text{V}$ sine-wave input.
