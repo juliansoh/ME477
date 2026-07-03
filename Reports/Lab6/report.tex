@@ -113,6 +113,8 @@ The objectives of this lab were:
 	\item To incorporate analog-to-digital and digital-to-analog conversion
 \end{enumerate}
 
+The laboratory procedure, real-time implementation approach, instrumentation context, and supporting theory used in this report are aligned with the course reference material in \citep{Picone2024}.
+
 \section{Materials and Methods}
 
 \subsection{Materials}
@@ -245,25 +247,27 @@ The frequency-response measurements are shown in \autoref{fig:L65_5}, \autoref{f
 
 In each oscilloscope screenshot, the right-side \texttt{Result} panel is where the measured values are read:
 \texttt{Vpp(C2)} for output peak-to-peak amplitude and \texttt{Phase(r-r)(C1-C2)} for phase.
+The measured values for all tested frequencies are summarized in \autoref{tab:L65_measured}.
+For each frequency, the output amplitude was calculated from the measured peak-to-peak value using $A = V_{pp}/2$.
 
 \begin{table}[htb]
 \centering
 \caption{Measured frequency-response values from the oscilloscope in Problem L6.5.}
-\label{tab:L65_measured}
-\begin{tabular}{c c c}
+\begin{tabular}{c c c c}
 \hline
-Frequency (Hz) & \texttt{Vpp(C2)} & \texttt{Phase(r-r)(C1-C2)} \\
+Frequency (Hz) & \texttt{Vpp(C2)} & Amplitude $A$ & \texttt{Phase(r-r)(C1-C2)} \\
 \hline
-5   & 4.2330 V   & 15.347$^{\circ}$ \\
-10  & 4.7900 V   & 32.576$^{\circ}$ \\
-20  & 4.9141 V   & 67.855$^{\circ}$ \\
-40  & 3.0537 V   & 154.59$^{\circ}$ \\
-60  & 1.1369 V   & -156.44$^{\circ}$ \\
-100 & 272.18 mV  & -119.27$^{\circ}$ \\
-140 & 121.72 mV  & -127.62$^{\circ}$ \\
-200 & 64.914 mV  & -150.28$^{\circ}$ \\
+5   & 4.2330 V   & 2.1165 V  & 15.347$^{\circ}$ \\
+10  & 4.7900 V   & 2.3950 V  & 32.576$^{\circ}$ \\
+20  & 4.9141 V   & 2.4571 V  & 67.855$^{\circ}$ \\
+40  & 3.0537 V   & 1.5269 V  & 154.59$^{\circ}$ \\
+60  & 1.1369 V   & 0.5685 V  & -156.44$^{\circ}$ \\
+100 & 272.18 mV  & 136.09 mV & -119.27$^{\circ}$ \\
+140 & 121.72 mV  & 60.860 mV & -127.62$^{\circ}$ \\
+200 & 64.914 mV  & 32.457 mV & -150.28$^{\circ}$ \\
 \hline
 \end{tabular}
+\label{tab:L65_measured}
 \end{table}
 
 \begin{figure}[htb]
@@ -326,7 +330,43 @@ Frequency (Hz) & \texttt{Vpp(C2)} & \texttt{Phase(r-r)(C1-C2)} \\
 From the data collected in Problem L6.5, compute the transfer-function magnitude in decibels at each tested frequency.
 
 \vspace{\baselineskip}
-<findings>
+Using the measured values from \autoref{tab:L65_measured}, the transfer-function magnitude at each frequency was computed as
+\[
+|G(j\omega)| = \frac{V_{\text{out}}}{V_{\text{in}}},
+\qquad
+M_{\text{dB}} = 20\log_{10}\left(|G(j\omega)|\right),
+\]
+with $V_{\text{in}} = 5\,\text{V}_{pp}$.
+
+The theoretical continuous-time frequency response and the measured data overlay are shown in
+\autoref{fig:Lab66Mag}, \autoref{fig:Lab66Phase}, and \autoref{fig:Lab66Bode}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/Lab66-Magnitude-Comparison.png}
+	\caption{Problem L6.6 magnitude response: measured data overlaid on the theoretical continuous-time response.}
+	\label{fig:Lab66Mag}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/Lab66-Phase-Comparison.png}
+	\caption{Problem L6.6 phase response: measured data overlaid on the theoretical continuous-time response.}
+	\label{fig:Lab66Phase}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/Lab66-Bode-Comparison.png}
+	\caption{Combined Bode-style comparison for Problem L6.6 (magnitude and phase).}
+	\label{fig:Lab66Bode}
+\end{figure}
+
+From \autoref{fig:Lab66Mag}, the measured magnitude follows the expected low-pass trend and agrees well with theory at lower frequencies, then rolls off more quickly than the theoretical curve above roughly $60\,\text{Hz}$. This is consistent with practical discrete-time and hardware effects not fully captured by the ideal continuous model.
+
+From \autoref{fig:Lab66Phase}, the measured phase exhibits substantially larger deviations than magnitude, especially near $20$--$40\,\text{Hz}$ and at higher frequencies where the output amplitude is small. In these regions, oscilloscope phase readings are more sensitive to noise and channel timing uncertainty, which increases phase scatter.
+
+Overall, \autoref{fig:Lab66Bode} shows that the measured response captures the same qualitative dynamics as the theoretical model (low-pass behavior and increasing lag with frequency), while quantitative differences are primarily attributable to sampling effects, ADC/DAC nonidealities, finite resolution, and measurement noise.
 
 \section{Author Contributions}
 

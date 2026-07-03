@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex report"] 1783052391.63064 "report.aux" "report.bbl" "report" 1783052432.88236 0
+["bibtex report"] 1783054217.97813 "report.aux" "report.bbl" "report" 1783054221.13526 0
   "./report.bib" 1780798838.24212 845 97f993c86e85945012e8bf541ae536ef ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1783052432.58103 7578 d8a1622d37957e87026caa216a3020a2 "pdflatex"
+  "report.aux" 1783054220.8107 8743 b3153baf54a64ce0e4d06fd926406266 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1783052430.4023 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" "report.pdf" "report" 1783052432.88249 0
-  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" 1783052430.18588 15260 12ed4cc1fd0db50e605f35bd150f65ae ""
+["pdflatex"] 1783054218.0825 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" "report.pdf" "report" 1783054221.13541 0
+  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab6/report.tex" 1783054211.39328 17987 7ec6d6574cbc713094e9fb304b4f829b ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -63,6 +63,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb" 1336858727 21098 d4aee7c0aac232caac5688b586b9363c ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb" 1336858727 22644 de44b1031364c5f57164f2249f1302c5 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb" 1336858727 22927 31e776418d6f3753a749eafbf9a8a2bf ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb" 1336858727 10538 4c913b4f5af64465058317e624ed5562 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb" 1215737283 175641 e30a691dc1402b08fd6535cf8a31e5b7 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb" 1215737283 169201 9ebf99020dde51a5086e186761a34e8f ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb" 1546638885 64555 1bdfd101450d8daa1682251ffcdf0074 ""
@@ -348,14 +349,17 @@
   "figures/Lab62.png" 1782946091.25532 88708 ba7575f1a5b50fe620113d9fa13f0df4 ""
   "figures/Lab63.png" 1783037927.03726 106485 998949ca72999062d96819fad1568f0e ""
   "figures/Lab64-StepResponse-Python.png" 1783046109.50346 195720 0a4b9b9de4b1b41c94b50db02226f9da ""
+  "figures/Lab66-Bode-Comparison.png" 1783053948.84554 231198 a4df9a8786c604f24ef3f1a42b41d16c ""
+  "figures/Lab66-Magnitude-Comparison.png" 1783053948.48352 131865 dae5a954801fbe75652d1a7e3a88f81c ""
+  "figures/Lab66-Phase-Comparison.png" 1783053948.62301 121166 29d0a5b3d018579c98636051ff98c358 ""
   "mycommands.sty" 1757906315.75133 1545 1f448eaa0b6118fa712d6bae1e44fd1e ""
   "myfontstyle.sty" 1757906315.75131 511 da96ca531bb3be0955bfe35704ed6dcb ""
   "mymacros.sty" 1757906315.75122 663 63c3d61f7ba8bcf8c9a6fffb65f42de2 ""
   "mypackages.sty" 1782087041.30239 5779 986efdc1c81ededc8646e4e9b2287d35 ""
-  "report.aux" 1783052432.58103 7578 d8a1622d37957e87026caa216a3020a2 "pdflatex"
-  "report.bbl" 1783052391.74414 275 de5ffaf5b665b622658d80bed97ba2a5 "bibtex report"
-  "report.out" 1783052432.5843 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
-  "report.tex" 1783052430.18588 15260 12ed4cc1fd0db50e605f35bd150f65ae ""
+  "report.aux" 1783054220.8107 8743 b3153baf54a64ce0e4d06fd926406266 "pdflatex"
+  "report.bbl" 1783054218.07567 519 adb7739376afb50aa9c54cacbd1f8414 "bibtex report"
+  "report.out" 1783054220.82269 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
+  "report.tex" 1783054211.39328 17987 7ec6d6574cbc713094e9fb304b4f829b ""
   (generated)
   "report.aux"
   "report.log"

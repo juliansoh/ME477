@@ -1,8 +1,13 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{1}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Picone et~al.(2024)Picone, Garbini, and Devine]{Picone2024}
+Rico A.~R. Picone, Joseph~L. Garbini, and Cameron~N. Devine.
+\newblock \emph{An introduction to real-time computing for mechanical engineers}.
+\newblock The MIT Press, 2024.
 
 \end{thebibliography}
