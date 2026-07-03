@@ -129,7 +129,8 @@ int main(int argc, char **argv)
 	pthread_join(thread,NULL);
 
 	//Write buffers to CSV file (instead of MatLab (for Problem L6.3)
-	FILE *fp = fopen("/home/admin/lab6.csv", "w");
+	printf("Final idx = %d\n", idx);
+	FILE *fp = fopen("/home/admin/lab6-1.csv", "w");
 
 	if (fp == NULL)
 	{
@@ -227,10 +228,10 @@ void* Timer_ISR(void *resource)
                 y_buf[idx] = yout;
                 idx++;
             }
-            if (idx >= N)	//Stop collecting after 500 samples
-            {
-                threadResource->irqThreadRdy = NiFpga_False;
-            }
+            //if (idx >= N)	//Stop collecting after 500 samples
+            //{
+            //    threadResource->irqThreadRdy = NiFpga_False;
+            //}
 
             Irq_Acknowledge(irqAssert);
         }
