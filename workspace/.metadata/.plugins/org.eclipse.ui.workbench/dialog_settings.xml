@@ -10,8 +10,8 @@
 		<item value="true" key="internalFilter"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="1054" key="dialogHeight"/>
-		<item value="1824" key="dialogWidth"/>
+		<item value="1052" key="dialogHeight"/>
+		<item value="2002" key="dialogWidth"/>
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
