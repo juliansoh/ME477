@@ -90,9 +90,9 @@
 \begin{adjustwidth}{1.5in}{1.5in}
 {\small
 \noindent\textbf{Abstract.} \hspace{1em}
-This lab implements a program that is a closed-loop control system whereby a motor that is being driven
-is measured for (actual) velocity. This velocity is continuously compared to the input (desired) velocity. The difference
-between the two velocities is used to compute a control signal that is sent to the motor to adjust its speed, hence
+This lab implemented a program that was a closed-loop control system whereby a motor that was being driven
+was measured for (actual) velocity. This velocity was continuously compared to the input (desired) velocity. The difference
+between the two velocities was used to compute a control signal that was sent to the motor to adjust its speed, hence
 the closed-looped nature of the system. 
 }
 \end{adjustwidth}
@@ -105,12 +105,12 @@ the closed-looped nature of the system.
 
 \section{Introduction} 
 \label{sec:introduction}
-This laboratory exercise focuses on building a motor-speed control application as an integrated closed-loop system. The controller continuously compares the commanded velocity with the measured motor velocity and updates the drive signal in real time to reduce the tracking error. The target closed-loop architecture used in this report is shown in Figure~\ref{fig:SchemaClosedLoop} and follows the framework described by \citet{Picone2024}.
+This laboratory exercise focused on building a motor-speed control application as an integrated closed-loop system. The controller continuously compared the commanded velocity with the measured motor velocity and updated the drive signal in real time to reduce the tracking error. The target closed-loop architecture used in this report was shown in Figure~\ref{fig:SchemaClosedLoop}.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=.9\linewidth]{figures/Schema-Closed-Loop.png}
-	\caption{Schematic diagram of the target closed-loop system.}
+	\caption{Schematic diagram of the target closed-loop system \citep{Picone2024}.}
 	\label{fig:SchemaClosedLoop}
 \end{figure}
 
@@ -120,8 +120,6 @@ The objectives of this exercise were to:
 	\item Implement a program structure that supports continuous adjustment of control parameters without stopping the control algorithm
 	\item Implement a proportional-integral (PI) velocity control algorithm for the DC motor
 \end{enumerate}
-
-The laboratory procedure, real-time implementation approach, instrumentation context, and supporting theory used in this report are aligned with the course reference material in \citep{Picone2024}.
 
 \section{Materials and Methods}
 
@@ -142,11 +140,11 @@ The materials used in this experiment were:
 \end{itemize}
 
 \subsection{Main Function Implementation}
-The \texttt{main()} routine coordinates initialization, user interaction through the table editor, and orderly shutdown of the timer-driven control thread. Its sequence is:
+The \texttt{main()} routine coordinated initialization, user interaction through the table editor, and orderly shutdown of the timer-driven control thread. Its sequence was:
 \begin{enumerate}
 	\item Initialize all table-editor variables.
 	\item Configure, install, and enable the timer IRQ.
-	\item Register and create the timer thread that services the interrupt. For this lab, the thread resource structure includes a pointer to the table data so the ISR-side logic can access current parameters.
+	\item Register and create the timer thread that serviced the interrupt. For this lab, the thread resource structure included a pointer to the table data so the ISR-side logic could access current parameters.
 	\item Launch the table editor using six entries:
 \end{enumerate}
 
@@ -159,10 +157,10 @@ The \texttt{main()} routine coordinates initialization, user interaction through
 	\item \texttt{BTI}: ms \{edit\}
 \end{itemize}
 
-All editable values are initialized to zero, except the BTI setting, which is initialized to $5\,\text{ms}$. After the table editor exits, \texttt{main()} signals the timer thread to stop and then waits until that thread terminates cleanly.
+All editable values were initialized to zero, except the BTI setting, which was initialized to $5\,\text{ms}$. After the table editor exited, \texttt{main()} signaled the timer thread to stop and then waited until that thread terminated cleanly.
 
 \subsection{Interrupt Service Routine (ISR) Thread}
-At the top of the timer-thread entry function, convenient aliases are created for table entries through the table pointer, for example:
+At the top of the timer-thread entry function, convenient aliases were created for table entries through the table pointer, for example:
 
 \begin{lstlisting}[language=C]
 double *Omega_R = &((threadResource->a_table + 0)->value);
@@ -170,13 +168,13 @@ double *Omega_J = &((threadResource->a_table + 1)->value);
 // etc.
 \end{lstlisting}
 
-The timer thread then runs in an IRQ-paced main loop and exits only when its ready flag is cleared. Before entering the loop, it:
+The timer thread then ran in an IRQ-paced main loop and exited only when its ready flag was cleared. Before entering the loop, it:
 \begin{itemize}
 	\item Initializes analog I/O and forces motor command voltage to $0\,\text{V}$ with \texttt{Aio\_Write()}.
 	\item Configures the encoder counter interface.
 \end{itemize}
 
-During each interrupt period, the thread performs the following operations:
+During each interrupt period, the thread performed the following operations:
 \begin{enumerate}
 	\item Prepare for the next sampling instant by waiting for IRQ assertion, writing the Timer Write Register, and writing \texttt{TRUE} to the Timer Set Time Register.
 	\item Call \texttt{vel()} (from Lab 4) to obtain the current motor velocity.
@@ -190,12 +188,12 @@ During each interrupt period, the thread performs the following operations:
 \end{enumerate}
 
 \subsection{Implementing the PI Controller}
-The PI controller maps velocity error $e(t)$ to the control command $u_a(t)$ through proportional and integral gains, $K_P$ and $K_I$. The closed-loop signal flow used in this experiment is shown in Figure~\ref{fig:ControlBlockDiagram}, including the controller, amplifier, plant, and encoder feedback path \citep{Picone2024}.
+The PI controller mapped velocity error $e(t)$ to the control command $u_a(t)$ through proportional and integral gains, $K_P$ and $K_I$. The closed-loop signal flow used in this experiment was shown in Figure~\ref{fig:ControlBlockDiagram}, including the controller, amplifier, plant, and encoder feedback path \citep{Picone2024}.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=.95\linewidth]{figures/Control-Block-Diagram.png}
-	\caption{Control block diagram for the Lab 7 PI velocity-control system.}
+	\caption{Control block diagram for the Lab 7 PI velocity-control system \citep{Picone2024}.}
 	\label{fig:ControlBlockDiagram}
 \end{figure}
 
@@ -204,7 +202,7 @@ Starting from the continuous-time controller model,
 G_C(s) = K_P + \frac{K_I}{s},
 \label{eq:gc_continuous}
 \end{equation}
-and applying the Tustin transformation, the discrete controller can be written as
+and applying the Tustin transformation, the discrete controller could be written as
 \begin{equation}
 G_C(z) = \frac{U_a(z)}{E(z)} = \frac{b_0 + b_1 z^{-1}}{a_0 + a_1 z^{-1}},
 \label{eq:pi_discrete}
@@ -214,7 +212,7 @@ with coefficients
 a_0 = 1, \quad a_1 = -1, \quad b_0 = K_P + \frac{K_I T}{2}, \quad b_1 = -K_P + \frac{K_I T}{2},
 \label{eq:pi_coefficients}
 \end{equation}
-where $T$ is the sampling period. The discrete velocity error used by the controller is
+where $T$ was the sampling period. The discrete velocity error used by the controller was
 \begin{equation}
 E(n) = \Omega_R(n) - \Omega_J(n).
 \label{eq:velocity_error}
@@ -227,7 +225,7 @@ Design a PI controller for the T1 target system using the root-locus procedure f
 
 \vspace{\baselineskip}
 
-The base PI gains for the T1a target system are computed from the design relations
+The base PI gains for the T1a target system were computed from the design relations
 \begin{equation}
 K_P = \frac{B + 2J\,\mathcal{R}(\psi)}{K_a K_M},
 \label{eq:kp_base}
@@ -245,7 +243,7 @@ J = 7.8\times10^{-6}\;\text{N\,m\,s}^2/\text{rad},\quad
 B = 0\;\text{N\,m\,s/rad},
 \label{eq:t1a_params}
 \end{equation}
-the combined amplifier-motor gain is
+the combined amplifier-motor gain was
 \begin{equation}
 K_aK_M = (0.06)(0.0698) = 0.004188.
 \label{eq:ka_km}
@@ -257,11 +255,11 @@ K_P = 0.104\;\text{V\,s/rad},\quad K_I = 2.07\;\text{V/rad}.
 \label{eq:base_gains_result}
 \end{equation}
 
-These values are consistent with the baseline gains reported for Lab 7 and were used as the starting controller settings in the remainder of the experiment. The controller implementation uses velocity in rad/s, which is consistent with the units of the computed gains.
+These values were consistent with the baseline gains reported for Lab 7 and were used as the starting controller settings in the remainder of the experiment. The controller implementation used velocity in rad/s, which was consistent with the units of the computed gains.
 
 \vspace{\baselineskip}
 
-The base PI gains are $K_P = 0.104\;\text{V\,s/rad}$ and $K_I = 2.07\;\text{V/rad}$.
+The base PI gains were $K_P = 0.104\;\text{V\,s/rad}$ and $K_I = 2.07\;\text{V/rad}$.
 
 \subsection{Problem L7.2}
 Design a PI controller for your specific T1 target system following the root locus design technique of Sections 7.6.2 to 7.6.6. Compare the gains $K_P$ and $K_I$ to the base set of gains computed in Lab Problem L7.1.
@@ -307,7 +305,7 @@ $K_I$ & 2.07 & 2.0708 \\
 \caption{Comparison of base and root-locus PI gains for the T1a target system.}
 \end{table}
 
-The designed gains are essentially identical to the base gains, with only minor differences due to rounding. Therefore, the root-locus design confirms the controller parameters used for the remainder of the laboratory exercise. A test run of the controller with these gains produced stable closed-loop motor operation.
+The designed gains were essentially identical to the base gains, with only minor differences due to rounding. Therefore, the root-locus design confirmed the controller parameters used for the remainder of the laboratory exercise. A test run of the controller with these gains produced stable closed-loop motor operation.
 
 Steady-state operation in the lab setup was identified using the following observations:
 \begin{itemize}
@@ -318,7 +316,7 @@ Steady-state operation in the lab setup was identified using the following obser
 	\item The motor sound remains smooth, rather than showing violent oscillation or continuous hunting.
 \end{itemize}
 
-The steady-state evidence captured during this test run is shown in Figure~\ref{fig:steady_state_evidence}.
+The steady-state evidence captured during this test run was shown in Figure~\ref{fig:steady_state_evidence}.
 
 \begin{figure}[htb]
 	\centering
@@ -332,13 +330,15 @@ Write, test, and debug the program described in Section L7.2. For debugging purp
 
 The PI motor velocity controller described in Section L7.2 was implemented in C and tested on the myRIO platform using the base controller gains $K_P = 0.104\;\text{V\,s/rad}$ and $K_I = 2.07\;\text{V/rad}$. Several debugging steps were required to verify proper operation of the velocity measurement, controller calculations, and actuator output. After correcting implementation issues, the controller successfully regulated motor speed. During testing, the measured velocity converged to approximately the commanded speed and the control output remained bounded. As shown in Figure~\ref{fig:steady_state_evidence} (Figure 3), the final implementation exhibited stable closed-loop operation and was used for the remaining laboratory exercises.
 
-The program implementation is available at \url{https://github.com/juliansoh/ME477/blob/main/workspace/Julian_lab7/main.c}.
+A video of this steady-state experiment could be found at \url{https://github.com/juliansoh/ME477/blob/main/Reports/Lab7/videos/Steady-state.mp4}.
+
+The program implementation was available at \url{https://github.com/juliansoh/ME477/blob/main/workspace/Julian_lab7/main.c}.
 
 \subsection{Problem L7.4}
 Measure the steady-state speed of the motor with an optical tachometer. Compare this value to the reference speed specified in the table. How close is it?
 
 
-For this test, the reference speed was set to $V_r = 500$ rpm and the system was allowed to reach steady-state operation before measurement. The program display at this operating point is shown in \autoref{fig:L74_program500}. The optical tachometer readings were between $494$ and $498$ rpm, as shown in \autoref{fig:L74_tach500}. This measured range is very close to the commanded value of $500$ rpm.
+For this test, the reference speed was set to $V_r = 500$ rpm and the system was allowed to reach steady-state operation before measurement. The program display at this operating point was shown in \autoref{fig:L74_program500}. The optical tachometer readings were between $494$ and $498$ rpm, as shown in \autoref{fig:L74_tach500}. This measured range was very close to the commanded value of $500$ rpm.
 
 \begin{figure}[htb]
 	\centering
@@ -360,21 +360,23 @@ While the motor is at steady-state speed, gently apply a steady manual load torq
 
 While a steady manual load torque was applied to the motor shaft, the measured velocity $V_J$ decreased temporarily. The PI controller responded by increasing the control output voltage $VDAout$. After a short transient, the measured velocity returned close to the reference value while the control voltage remained at a higher level than before the load was applied. This behavior demonstrates the disturbance-rejection capability of the PI controller. The proportional term reacts immediately to speed error, while the integral term removes the steady-state error caused by the applied load torque.
 
+A video of this experiment could be found at \url{https://github.com/juliansoh/ME477/blob/main/Reports/Lab7/videos/L7-5.mp4}.
+
 \subsection{Problem L7.6}
 Beginning with the base set of parameters, explore the effect of varying the proportional gain $K_P$ on the transient response. Try smaller and larger values of $K_P$. What are the effects on oscillation frequency and damping? Explain in terms of the closed-loop transfer-function parameters described in Section 7.5.2.
 
 
-The proportional gain was varied while the integral gain was held constant at $K_I = 2.07$. Decreasing $K_P$ produced a slower response with less damping and a longer settling time. Increasing $K_P$ produced a faster response with increased damping and a shorter settling time. This behavior is consistent with the closed-loop transfer function, where $K_P$ appears in the coefficient of the $s$ term and therefore directly influences the damping ratio of the system.
+The proportional gain was varied while the integral gain was held constant at $K_I = 2.07$. Decreasing $K_P$ produced a slower response with less damping and a longer settling time. Increasing $K_P$ produced a faster response with increased damping and a shorter settling time. This behavior was consistent with the closed-loop transfer function, where $K_P$ appeared in the coefficient of the $s$ term and therefore directly influenced the damping ratio of the system.
 
 \subsection{Problem L7.7}
 Beginning with the base set of parameters, explore the effect of varying the integral gain $K_I$ on the transient responses. Try smaller and larger values of $K_I$. What are the effects on oscillation frequency and damping? Explain in terms of the closed-loop transfer-function parameters described in Section 7.5.2.
 
 
-The integral gain $K_I$ was varied while the proportional gain was held constant at $K_P = 0.104$. Decreasing $K_I$ resulted in a slower response with lower oscillation frequency and slower error correction. Increasing $K_I$ produced a faster response and a higher oscillation frequency, but it also reduced damping and increased overshoot. This behavior agrees with the closed-loop transfer function because $K_I$ directly affects the natural frequency,
+The integral gain $K_I$ was varied while the proportional gain was held constant at $K_P = 0.104$. Decreasing $K_I$ resulted in a slower response with lower oscillation frequency and slower error correction. Increasing $K_I$ produced a faster response and a higher oscillation frequency, but it also reduced damping and increased overshoot. This behavior agreed with the closed-loop transfer function because $K_I$ directly affected the natural frequency,
 \begin{equation}
 \omega_n^2 = \frac{K_a K_M K_I}{J}.
 \end{equation}
-As $K_I$ increases, the natural frequency increases, causing the system to respond more quickly but with a greater tendency to oscillate. A summary of these observations is provided in \autoref{tab:L77_ki_effects}.
+As $K_I$ increased, the natural frequency increased, causing the system to respond more quickly but with a greater tendency to oscillate. A summary of these observations was provided in \autoref{tab:L77_ki_effects}.
 
 \begin{table}[htb]
 \centering
@@ -397,7 +399,9 @@ Using the base set of parameters, record the control output voltage $U_a$ and me
 The theoretical responses can be calculated using the appropriately scaled MATLAB \texttt{step()} command. Plot the analysis over the experimental responses, and use \texttt{subplot()} to place both the control-value and measured-velocity plots on the same page. What do you conclude?
 
 
-For Problem L7.8, we performed the comparison in Python (instead of MATLAB) using the captured dataset in \texttt{data/Lab7.csv}. The measured responses ($U_a$ and $\Omega_J$) were overlaid with the analytical continuous-time closed-loop responses on a two-subplot figure (control on top, velocity on bottom), matching the required analysis format. The resulting comparison plot is shown in \autoref{fig:L78_python_comparison}.
+For Problem L7.8, we performed the comparison in Python (instead of MATLAB) using the captured dataset in \texttt{data/Lab7.csv}. The measured responses ($U_a$ and $\Omega_J$) were overlaid with the analytical continuous-time closed-loop responses on a two-subplot figure (control on top, velocity on bottom), matching the required analysis format. The resulting comparison plot was shown in \autoref{fig:L78_python_comparison}.
+
+The Jupyter notebook used for this analysis was available at \url{https://github.com/juliansoh/ME477/blob/main/Reports/Lab7/data/L7-8.ipynb}, and the CSV capture file was available at \url{https://github.com/juliansoh/ME477/blob/main/Reports/Lab7/data/Lab7.csv}.
 
 \begin{figure}[htb]
 	\centering
@@ -408,11 +412,11 @@ For Problem L7.8, we performed the comparison in Python (instead of MATLAB) usin
 
 The recorded reference step in \texttt{Lab7.csv} was $-200\,\text{RPM} \rightarrow +200\,\text{RPM}$ with $K_P = 0.104$, $K_I = 2.07$, and $\text{BTI}=5\,\text{ms}$. Quantitatively, the comparison gave a velocity RMSE of $0.7748\,\text{rad/s}$ and a control-voltage RMSE of $0.2351\,\text{V}$.
 
-From the overlaid plots, the measured and analytical velocity responses agree well overall, and the control output shows the same transient trend with small offsets and ripple. The remaining differences are consistent with practical nonidealities such as sampling effects, sensor noise, and hardware limitations.
+From the overlaid plots, the measured and analytical velocity responses agreed well overall, and the control output showed the same transient trend with small offsets and ripple. The remaining differences were consistent with practical nonidealities such as sampling effects, sensor noise, and hardware limitations.
 
 \section{Author Contributions}
 
-There is only one author for this report and lab.
+There was only one author for this report and lab.
 
 
 
