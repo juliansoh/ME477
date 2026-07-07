@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex report"] 1783408382.65341 "report.aux" "report.bbl" "report" 1783408384.25115 0
+["bibtex report"] 1783408626.6776 "report.aux" "report.bbl" "report" 1783408628.88803 0
   "./report.bib" 1780798838.24212 845 97f993c86e85945012e8bf541ae536ef ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1783408383.94906 5228 f2befe9b8df951cc0c4ce983cd1bc244 "pdflatex"
+  "report.aux" 1783408628.30673 5672 e793a5dfd193802a335b17950915a315 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1783408382.78277 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab7/report.tex" "report.pdf" "report" 1783408384.25129 0
-  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab7/report.tex" 1783408380.62432 19923 5a499683986be73d89545ac1239b6094 ""
+["pdflatex"] 1783408626.87441 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab7/report.tex" "report.pdf" "report" 1783408628.88827 0
+  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab7/report.tex" 1783408626.04184 20297 ad221fd407e9f42431ceee5e66a2b43c ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -345,6 +345,7 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "figures/Control-Block-Diagram.png" 1783398541.98352 26460 dc04d158f5516893a6631b79bddb81f6 ""
+  "figures/L78-Python-Comparison.png" 1783408610.96981 126891 79b4b391901672ea3e940df2a8b5b648 ""
   "figures/Schema-Closed-Loop.png" 1783391821.43714 33874 d580a806619fdf21ce6241c52d69ce6d ""
   "figures/program-500rpm.jpeg" 1783404786.02278 45167 08ed752a05b2ecd217debc8cf33ed97e ""
   "figures/steady-state.jpg" 1783402133.3106 54629 7d3edc1880aa961e0e3d407865538fff ""
@@ -353,10 +354,10 @@
   "myfontstyle.sty" 1757906315.75131 511 da96ca531bb3be0955bfe35704ed6dcb ""
   "mymacros.sty" 1757906315.75122 663 63c3d61f7ba8bcf8c9a6fffb65f42de2 ""
   "mypackages.sty" 1782087041.30239 5779 986efdc1c81ededc8646e4e9b2287d35 ""
-  "report.aux" 1783408383.94906 5228 f2befe9b8df951cc0c4ce983cd1bc244 "pdflatex"
-  "report.bbl" 1783408382.77621 519 adb7739376afb50aa9c54cacbd1f8414 "bibtex report"
-  "report.out" 1783408383.96032 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
-  "report.tex" 1783408380.62432 19923 5a499683986be73d89545ac1239b6094 ""
+  "report.aux" 1783408628.30673 5672 e793a5dfd193802a335b17950915a315 "pdflatex"
+  "report.bbl" 1783408626.85935 519 adb7739376afb50aa9c54cacbd1f8414 "bibtex report"
+  "report.out" 1783408628.37336 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
+  "report.tex" 1783408626.04184 20297 ad221fd407e9f42431ceee5e66a2b43c ""
   (generated)
   "report.aux"
   "report.log"

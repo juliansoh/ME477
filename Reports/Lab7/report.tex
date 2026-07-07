@@ -397,7 +397,14 @@ Using the base set of parameters, record the control output voltage $U_a$ and me
 The theoretical responses can be calculated using the appropriately scaled MATLAB \texttt{step()} command. Plot the analysis over the experimental responses, and use \texttt{subplot()} to place both the control-value and measured-velocity plots on the same page. What do you conclude?
 
 
-For Problem L7.8, we performed the comparison in Python (instead of MATLAB) using the captured dataset in \texttt{data/Lab7.csv}. The measured responses ($U_a$ and $\Omega_J$) were overlaid with the analytical continuous-time closed-loop responses on a two-subplot figure (control on top, velocity on bottom), matching the required analysis format.
+For Problem L7.8, we performed the comparison in Python (instead of MATLAB) using the captured dataset in \texttt{data/Lab7.csv}. The measured responses ($U_a$ and $\Omega_J$) were overlaid with the analytical continuous-time closed-loop responses on a two-subplot figure (control on top, velocity on bottom), matching the required analysis format. The resulting comparison plot is shown in \autoref{fig:L78_python_comparison}.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.98\linewidth]{figures/L78-Python-Comparison.png}
+	\caption{L7.8 comparison of measured responses from \texttt{Lab7.csv} and analytical continuous-time model responses generated in Python.}
+	\label{fig:L78_python_comparison}
+\end{figure}
 
 The recorded reference step in \texttt{Lab7.csv} was $-200\,\text{RPM} \rightarrow +200\,\text{RPM}$ with $K_P = 0.104$, $K_I = 2.07$, and $\text{BTI}=5\,\text{ms}$. Quantitatively, the comparison gave a velocity RMSE of $0.7748\,\text{rad/s}$ and a control-voltage RMSE of $0.2351\,\text{V}$.
 
