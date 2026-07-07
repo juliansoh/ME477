@@ -14,7 +14,6 @@
 #include <sched.h>
 #include <time.h>
 #include <pthread.h>
-#include <math.h>
 #include "MyRio.h"
 #include "T1.h"
 #include "DIO.h"
@@ -53,11 +52,8 @@ double vel(void);
 uint32_t timeoutValue = 5000;
 int myFilter_ns = 1;
 MyRio_Encoder encC0;
-
-double omegaJ_buf[NPTS];		// raw BDI/BTI
-double omegaJ_rad_buf[NPTS];	// rad/s
+double omegaJ_buf[NPTS];
 double ua_buf[NPTS];
-
 int idx = 0;
 double t_buf[N];
 double x_buf[N];
@@ -239,10 +235,6 @@ void* Timer_ISR(void *resource)
              */
             double T = (*BTI) / 1000.0;
 
-            double omega_j_rad =
-                omega_j * (2.0 * M_PI) / (2048.0 * T);
-
-
             /*
              * Update PI controller coefficients from equation 7.43:
              *
@@ -317,7 +309,6 @@ void* Timer_ISR(void *resource)
             if (idx < NPTS)
             {
                 omegaJ_buf[idx] = omega_j;
-                omegaJ_rad_buf[idx] = omega_j_rad;
                 ua_buf[idx] = ua;
                 idx++;
             }
@@ -352,17 +343,8 @@ void* Timer_ISR(void *resource)
     /* Metadata */
 
     fprintf(fp, "Name,Julian Soh\n");
-
-    double currentOmegaR_rad =
-        currentOmegaR * (2.0 * M_PI) / (2048.0 * saveBTI / 1000.0);
-
-    double previousOmegaR_rad =
-        previousOmegaR * (2.0 * M_PI) / (2048.0 * saveBTI / 1000.0);
-
-    fprintf(fp, "CurrentOmegaR_rad_s,%f\n", currentOmegaR_rad);
-    fprintf(fp, "PreviousOmegaR_rad_s,%f\n", previousOmegaR_rad);
-    //fprintf(fp, "CurrentOmegaR,%f\n", currentOmegaR);
-    //fprintf(fp, "PreviousOm*gaR,%f\n", previousOmegaR);
+    fprintf(fp, "CurrentOmegaR,%f\n", currentOmegaR);
+    fprintf(fp, "PreviousOm*gaR,%f\n", previousOmegaR);
     fprintf(fp, "Kp,%f\n", saveKp);
     fprintf(fp, "Ki,%f\n", saveKi);
     fprintf(fp, "BTI,%f\n", saveBTI);
@@ -370,7 +352,7 @@ void* Timer_ISR(void *resource)
 
     /* Data */
 
-    fprintf(fp, "Sample,Omega_J_rad_s,Ua\n");
+    fprintf(fp, "Sample,Omega_J,Ua\n");
 
     int i;
     for(i = 0; i < idx; i++)
@@ -378,7 +360,7 @@ void* Timer_ISR(void *resource)
         fprintf(fp,
         		"%d,%f,%f\n",
         		i,
-                omegaJ_rad_buf[i],
+                omegaJ_buf[i],
                 ua_buf[i]);
     }
 
