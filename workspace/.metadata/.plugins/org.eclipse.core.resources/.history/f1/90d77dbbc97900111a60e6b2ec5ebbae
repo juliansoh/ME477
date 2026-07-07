@@ -232,26 +232,15 @@ void* Timer_ISR(void *resource)
              *
              * For now I am writing this as:
              */
-            //double omega_j = vel();
+            double omega_j = vel();
 
             /*
              * Convert BTI from ms to seconds for equation 7.43.
              */
-            //double T = (*BTI) / 1000.0;
-
-            //double omega_j_rad =
-            //    omega_j * (2.0 * M_PI) / (2048.0 * T);
-
-            double omega_j_counts = vel();
-
             double T = (*BTI) / 1000.0;
 
-            double omega_j =
-                (omega_j_counts * 60.0) /
-                (2048.0 * T);          // RPM
-
             double omega_j_rad =
-                omega_j * (2.0 * M_PI / 60.0);   // rad/s
+                omega_j * (2.0 * M_PI) / (2048.0 * T);
 
 
             /*
@@ -289,7 +278,7 @@ void* Timer_ISR(void *resource)
             if (*Omega_R != prevOmegaR_save)
             {
                 idx = 0;
-                previousOmegaR = currentOmegaR;
+                prevOmegaR_save = currentOmegaR;
                 currentOmegaR = *Omega_R;
 
                 saveKp = *Kp;
@@ -301,9 +290,7 @@ void* Timer_ISR(void *resource)
             /*
              * Error = reference velocity - measured velocity.
              */
-            //double error = (*Omega_R) - omega_j;
-            double Omega_R_rad = (*Omega_R) * (2.0 * M_PI / 60.0);
-            double error = Omega_R_rad - omega_j_rad;
+            double error = (*Omega_R) - omega_j;
 
             //Diagnostics
             //*Omega_J = omega_j;
@@ -367,10 +354,10 @@ void* Timer_ISR(void *resource)
     fprintf(fp, "Name,Julian Soh\n");
 
     double currentOmegaR_rad =
-        currentOmegaR * (2.0 * M_PI / 60.0);
+        currentOmegaR * (2.0 * M_PI) / (2048.0 * saveBTI / 1000.0);
 
     double previousOmegaR_rad =
-        previousOmegaR * (2.0 * M_PI / 60.0);
+        previousOmegaR * (2.0 * M_PI) / (2048.0 * saveBTI / 1000.0);
 
     fprintf(fp, "CurrentOmegaR_rad_s,%f\n", currentOmegaR_rad);
     fprintf(fp, "PreviousOmegaR_rad_s,%f\n", previousOmegaR_rad);

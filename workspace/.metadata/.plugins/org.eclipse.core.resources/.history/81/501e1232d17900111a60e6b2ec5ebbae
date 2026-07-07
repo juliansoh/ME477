@@ -289,7 +289,7 @@ void* Timer_ISR(void *resource)
             if (*Omega_R != prevOmegaR_save)
             {
                 idx = 0;
-                previousOmegaR = currentOmegaR;
+                prevOmegaR_save = currentOmegaR;
                 currentOmegaR = *Omega_R;
 
                 saveKp = *Kp;
@@ -367,10 +367,10 @@ void* Timer_ISR(void *resource)
     fprintf(fp, "Name,Julian Soh\n");
 
     double currentOmegaR_rad =
-        currentOmegaR * (2.0 * M_PI / 60.0);
+        currentOmegaR * (2.0 * M_PI) / (2048.0 * saveBTI / 1000.0);
 
     double previousOmegaR_rad =
-        previousOmegaR * (2.0 * M_PI / 60.0);
+        previousOmegaR * (2.0 * M_PI) / (2048.0 * saveBTI / 1000.0);
 
     fprintf(fp, "CurrentOmegaR_rad_s,%f\n", currentOmegaR_rad);
     fprintf(fp, "PreviousOmegaR_rad_s,%f\n", previousOmegaR_rad);
