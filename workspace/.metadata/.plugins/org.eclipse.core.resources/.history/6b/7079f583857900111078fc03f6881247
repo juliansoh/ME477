@@ -1,0 +1,468 @@
+/*
+ * Lab 7
+ * Author: Julian Soh
+ * Date: July 5, 2026
+ * Description: Motor Velocity Control
+ */
+
+/* includes */
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <sched.h>
+#include <time.h>
+#include <pthread.h>
+#include "MyRio.h"
+#include "T1.h"
+#include "DIO.h"
+#include "UART.h"
+#include "Encoder.h"
+#include "TimerIRQ.h"
+#include "ctable2.h"
+
+/* definitions */
+typedef struct {
+    NiFpga_IrqContext irqContext;
+    table *a_table;
+    NiFpga_Bool irqThreadRdy;
+} ThreadResource;
+
+struct biquad {
+    double b0, b1, b2;
+    double a0, a1, a2;
+    double x0, x1, x2;
+    double y1, y2;
+};
+#define NOKEY 127
+#define SATURATE(x, lo, hi) ((x) < (lo) ? (lo) : ((x) > (hi) ? (hi) : (x)))
+//The next few lines are for Problem L6.3
+#define N 500
+double t_buf[N];
+double x_buf[N];
+double y_buf[N];
+int idx = 0;
+
+/* prototypes */
+void wait(void);
+void* Timer_ISR(void *thread_reource);
+char getkey(void);
+double cascade(double xin, struct biquad *fa, int ns, double ymin, double ymax);
+double vel(void);
+
+//Global variables
+uint32_t timeoutValue = 5000;
+int myFilter_ns = 1;
+MyRio_Encoder encC0;
+
+struct biquad myFilter[] = {
+    // b0 b1 b2 a0 a1 a2 x0 x1 x2 y1 y2
+    {0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}
+};
+
+table my_table[] =
+{
+    {"V_R: rpm",   1, 0.0},   // edit
+    {"V_J: rpm",   0, 0.0},   // show
+    {"VDAout: mV", 0, 0.0},   // show
+    {"Kp: V-s/r",  1, 0.0},   // edit
+    {"Ki: V/r",    1, 0.0},   //*edit
+    {"BTI: ms",    1, 5.0}    // edit
+};
+
+
+int main(int argc, char **argv)
+{
+	NiFpga_Status status;
+	int32_t irq_status;
+	MyRio_IrqTimer irqTimer0 = {0};
+	pthread_t thread = {0};
+
+	// -------------------- THREAD RESOURCE --------------
+
+	ThreadResource irqThread0 = {0};
+
+	irqThread0.a_table = my_table;
+	irqThread0.irqThreadRdy = NiFpga_True;
+
+	// -------------------- OPEN MYRIO -------------------
+
+	status = MyRio_Open();		    			// open FPGA session
+    if (MyRio_IsNotSuccess(status)) return status;
+
+	// Initialize timer IRQ object
+	irqTimer0.timerWrite = IRQTIMERWRITE;
+	irqTimer0.timerSet   = IRQTIMERSETTIME;
+
+    // ------------------- REGISTER INTERRUPT ------------
+
+    // Register DIO IRQ. Terminate if not successful
+	irq_status = Irq_RegisterTimerIrq(&irqTimer0,
+							          &irqThread0.irqContext,
+							          timeoutValue);
+
+	if(irq_status != 0)
+	{
+		printf_lcd("/fTimer Interrupt registration failed\n");
+		MyRio_Close();
+		return -1;
+	}
+
+	// -------------------- ENABLE THREAD --------------------
+	//Set the ready flag to enable the new thread
+	//irqThread0.irqThreadRdy = NiFpga_True;
+
+	// ------------ CREATE ISR THREAD TO SERVICE IRQ ---------
+
+	//2, Create new thread to catch the IRQ
+	irq_status = pthread_create(&thread,
+								NULL,			//attr default ok
+								Timer_ISR,			//Start routine
+								&irqThread0);
+
+	// ---------------------- MAIN LOOP ----------------------
+	ctable2("Lab 7 Motor Control",
+	        my_table,
+	        6);
+
+	// ----------------- STOP THREAD ---------------------
+	irqThread0.irqThreadRdy = NiFpga_False;
+
+	//Wait for ISR Thread to terminate
+	pthread_join(thread,NULL);
+
+
+	// --------------- UNREGISTER INTERRUPT --------------
+	Irq_UnregisterTimerIrq(&irqTimer0,irqThread0.irqContext);
+
+
+	// --------------- CLOSE MYRIO SESSION ---------------
+    printf_lcd("\fBye...");		// Print to LCD display
+
+	status = MyRio_Close();						// close FPGA session
+
+	return status;
+}
+
+void* Timer_ISR(void *resource)
+{
+    ThreadResource *threadResource = (ThreadResource*) resource;
+
+    uint32_t irqAssert = 0;
+
+    /*
+     * Convenient names for table entries.
+     * These are pointers to the values inside my_table.
+     */
+    double *Omega_R = &((threadResource->a_table + 0)->value);   // V_R: rpm, edit
+    double *Omega_J = &((threadResource->a_table + 1)->value);   // V_J: rpm, show
+    double *VDAout  = &((threadResource->a_table + 2)->value);   // VDAout: mV, show
+    double *Kp      = &((threadResource->a_table + 3)->value);   // Kp: V-s/r, edit
+    double *Ki      = &((threadResource->a_table + 4)->value);   // Ki: V/r, edit
+    double *BTI     = &((threadResource->a_table + 5)->value);   // BTI: ms, edit
+
+    /*
+     * Initialize analog output.
+     * Lab 7 says output to connector C, channel AOC0.
+     */
+    MyRio_Aio AOC0;
+    Aio_InitCO0(&AOC0);
+    Aio_Write(&AOC0, 0.0);
+
+    // Initialize encoder
+    EncoderC_initialize(myrio_session, &encC0);
+
+    myFilter[0].x0 = 0.0;
+    myFilter[0].x1 = 0.0;
+    myFilter[0].x2 = 0.0;
+
+    myFilter[0].y1 = 0.0;
+    myFilter[0].y2 = 0.0;
+
+    while (threadResource->irqThreadRdy == NiFpga_True)
+    {
+        Irq_Wait(threadResource->irqContext,
+                 TIMERIRQNO,
+                 &irqAssert,
+                 (NiFpga_Bool*) &(threadResource->irqThreadRdy));
+
+        if (irqAssert & (1 << TIMERIRQNO))
+        {
+            /*
+             * Set timer for next BTI.
+             * BTI is in ms from the table.
+             * Timer register uses microseconds, so multiply by 1000.
+             */
+            timeoutValue = (uint32_t)(*BTI * 1000.0);
+        	//timeoutValue = 5000;
+
+            NiFpga_WriteU32(myrio_session,
+                            IRQTIMERWRITE,
+                            timeoutValue);
+
+            NiFpga_WriteBool(myrio_session,
+                             IRQTIMERSETTIME,
+                             NiFpga_True);
+
+            /*
+             * Measure motor velocity.
+             *
+             * Use your Lab 4 vel() function here.
+             * It should return angular velocity.
+             *
+             * For now I am writing this as:
+             */
+            double omega_j = vel();
+
+            /*
+             * Convert reference speed from rpm to rad/s.
+             * Table value Omega_R is entered in rpm.
+             */
+
+            /*
+             * Convert BTI from ms to seconds for equation 7.43.
+             */
+            double T = (*BTI) / 1000.0;
+
+            /*
+             * Update PI controller coefficients from equation 7.43:
+             *
+             * a0 = 1
+             * a1 = -1
+             * b0 = Kp + 0.5 Ki T
+             * b1 = -Kp + 0.5 Ki T
+             */
+            myFilter[0].a0 = 1.0;
+            myFilter[0].a1 = -1.0;
+            myFilter[0].a2 = 0.0;
+
+            myFilter[0].b0 = (*Kp) + 0.5 * (*Ki) * T;
+            myFilter[0].b1 = -(*Kp) + 0.5 * (*Ki) * T;
+            myFilter[0].b2 = 0.0;
+
+
+            /*
+             * Error = reference velocity - measured velocity.
+             */
+            double error = (*Omega_R) - omega_j;
+
+            //Diagnostics
+            //*Omega_J = omega_j;
+            //*VDAout = error;
+
+            /*
+             * Use cascade() to compute PI control output.
+             * Limit output to [-10, +10] V.
+             */
+
+            //Diagnostics - Reset (Forgets previous values)
+            myFilter[0].x1 = 0.0;
+            myFilter[0].x2 = 0.0;
+            myFilter[0].y1 = 0.0;
+            myFilter[0].y2 = 0.0;
+            //////
+
+            double ua = cascade(error,
+                                myFilter,
+                                myFilter_ns,
+                                -10.0,
+                                10.0);
+
+            //Diagnostics
+            //*Omega_J = omega_j;
+            //*VDAout = ua;
+
+
+            //Send control output to DAC AOC0.
+
+            Aio_Write(&AOC0, ua);
+
+             // Update show values in the table.
+
+             // Omega_J table display is rpm.
+             // VDAout table display is mV.
+             //
+            *Omega_J = omega_j;
+            *VDAout = ua * 1000.0;
+
+            //Diagnostics
+            //*Omega_J = omega_j;
+            //*VDAout = error;
+            /////
+
+            /*
+             * Save results later.
+             * We are intentionally leaving this blank for now.
+             */
+
+            Irq_Acknowledge(irqAssert);
+        }
+    }
+
+    /*
+     * Stop motor output before thread exits.
+     */
+    Aio_Write(&AOC0, 0.0);
+    //Aio_Write(&AOC1, 0.0);
+
+    pthread_exit(NULL);
+    return NULL;
+}
+
+double cascade(double xin, struct biquad *fa, int ns, double ymin, double ymax)
+{
+    struct biquad *f;
+    double x0 = xin;
+    double y0 = 0.0;
+    int i;
+
+    f = fa;   // point to first biquad section
+
+    for (i = 0; i < ns; i++)
+    {
+        // Compute current output (difference equation)
+        y0 = (f->b0 * x0 +
+              f->b1 * f->x1 +
+              f->b2 * f->x2 -
+              f->a1 * f->y1 -
+              f->a2 * f->y2) / f->a0;
+
+        // Update stored history
+        f->x2 = f->x1;
+        f->x1 = x0;
+
+        f->y2 = f->y1;
+        f->y1 = y0;
+
+        // Output becomes input to next section
+        x0 = y0;
+
+        // Move to next biquad
+        f++;
+    }
+
+    // Apply saturation AFTER final section
+    y0 = SATURATE(y0, ymin, ymax);
+
+    return y0;
+}
+
+char getkey(void)
+{
+    static MyRio_Dio ch[8];
+    static int firstrun;
+    int i;
+    int r = 0, c = 0;
+    bool b;
+
+    const char table[4][4] = {
+        {'1','2','3', UP},
+        {'4','5','6', DN},
+        {'7','8','9', ENT},
+        {'0','.','-', DEL}
+    };
+
+    if (firstrun != 1)
+    {
+        for(i=0; i<8; i++)
+        {
+            ch[i].dir = DIOB_70DIR;
+            ch[i].out = DIOB_70OUT;
+            ch[i].in  = DIOB_70IN;
+            ch[i].bit = i;
+        }
+
+        firstrun = 1;
+    }
+
+    b = NiFpga_True;
+
+    for (i = 0; i < 8; i++)
+    {
+        Dio_ReadBit(&ch[i]);
+    }
+
+    while (b == true)
+    {
+        for (c = 0; c < 4; c++)
+        {
+            for (i = 0; i < 4; i++)
+            {
+                Dio_ReadBit(&ch[i]);
+            }
+
+            Dio_WriteBit(&ch[c], NiFpga_False);
+
+            for (r = 0; r < 4; r++)
+            {
+                b = Dio_ReadBit(&ch[r + 4]);
+
+                if (b == false)
+                {
+                    break;
+                }
+            }
+
+            if (b == false)
+            {
+                break;
+            }
+
+            wait();
+        }
+    }
+
+    /* WAIT FOR KEY RELEASE */
+    while (Dio_ReadBit(&ch[r + 4]) == false)
+    {
+        wait();
+    }
+
+    return table[r][c];
+}
+
+void wait(void)	//Wait function
+{
+	uint32_t i;
+	i=417000;
+	while(i>0)
+	{
+		i--;
+	}
+	return;
+}
+
+double vel(void)
+{
+	static int32_t prev_count;
+	static int firstcall=0;
+    int32_t curr_count;
+    int32_t diff;
+
+    // Step 1: Read current encoder count
+    curr_count = Encoder_Counter(&encC0);
+
+    // Handle first call
+	if(firstcall != 1)
+	{
+	    prev_count = curr_count;
+	    firstcall = 1;
+	    return 0.0;
+	}
+
+	// Step 2: Compute speed difference between current and previous counts
+	diff = curr_count - prev_count;
+
+	// Step 3: Update Previous Count
+	prev_count = curr_count;
+
+	//Step 4: Convert to speed (RPM)
+	// 2048 per revolution
+	// 1 BTI per call
+
+    //double rpm = (double)diff * (60.0 / 2048.0);
+
+    return (double)diff;
+}
+
