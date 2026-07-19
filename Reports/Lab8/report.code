@@ -1,0 +1,36 @@
+%pip install pandas matplotlib
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the CSV file
+filename = 'data/csv-10Hz-Cap.csv'  # Replace with your actual filename
+data = pd.read_csv(filename)
+
+# Filter data for time 300ms
+filtered_data = data[data['time'] <= 0.3]
+
+# Extract filtered columns
+time = filtered_data['time']
+Vs = filtered_data['Vs']
+Vo = filtered_data['Vo']
+
+# Calculate ripple voltage (peak-to-peak of Vo)
+ripple_voltage = Vo.max() - Vo.min()
+print(f"Ripple Voltage (Vo peak-to-peak): {ripple_voltage:.4f} V")
+
+# Calculate DC value of Vo (average)
+Vo_dc = Vo.mean()
+print(f"DC Value (Vo average): {Vo_dc:.4f} V")
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.plot(time, Vs, label='Vs (Source Voltage)', color='blue')
+plt.plot(time, Vo, label='Vo (Output Voltage)', color='red')
+plt.xlabel('Time')
+plt.ylabel('Voltage')
+plt.title(f'Ripple Voltage over Time - Vs and Vo with Capacitor (10Hz Vpp=8V)\nRipple Voltage: {ripple_voltage:.4f} V, DC Vo: {Vo_dc:.4f} V')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
