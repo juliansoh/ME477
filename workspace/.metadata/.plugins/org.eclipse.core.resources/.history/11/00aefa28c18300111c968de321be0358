@@ -236,13 +236,13 @@ void* Timer_ISR(void *resource)
         	 * Compute reference position from path profile.
         	 * Sramps returns Pref_rev in revolutions.
         	 */
-        	nsamp = Sramps(mySegs,
+        	/*nsamp = Sramps(mySegs,
         	               nseg,
         	               &iseg,
         	               &itime,
         	               T_SEC,
         	               &Pref_rev);
-
+        	*/
 
         	/*
         	 * Read actual motor position.
