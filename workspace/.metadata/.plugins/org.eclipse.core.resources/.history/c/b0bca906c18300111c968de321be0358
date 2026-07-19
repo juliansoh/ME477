@@ -243,7 +243,6 @@ void* Timer_ISR(void *resource)
         	               T_SEC,
         	               &Pref_rev);
 
-
         	/*
         	 * Read actual motor position.
         	 * pos() returns encoder counts relative to the first reading.

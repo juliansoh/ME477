@@ -10,8 +10,8 @@
 		<item value="true" key="internalFilter"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="1218" key="dialogHeight"/>
-		<item value="2256" key="dialogWidth"/>
+		<item value="726" key="dialogHeight"/>
+		<item value="1024" key="dialogWidth"/>
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
@@ -61,5 +61,7 @@
 			<item value="Z:\pref2025.epf"/>
 			<item value="pref2025.epf"/>
 		</list>
+	</section>
+	<section name="FileSystemImportWizard">
 	</section>
 </section>
