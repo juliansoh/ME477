@@ -1,13 +1,14 @@
 # Fdb version 4
-["bibtex report"] 1784508172.0389 "report.aux" "report.bbl" "report" 1784508195.69524 0
+["bibtex report"] 1784511994.94297 "report.aux" "report.bbl" "report" 1784512000.3315 0
   "./report.bib" 1780798838.24212 845 97f993c86e85945012e8bf541ae536ef ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "report.aux" 1784508195.34194 3726 64a3bb0d095699b9b65f173dadde7596 "pdflatex"
+  "report.aux" 1784511999.9402 4428 f2e3026cce4bd2ab5894d176deae82f5 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1784508193.85171 "report.tex" "report.pdf" "report" 1784508195.69538 0
+["pdflatex"] 1784511995.12628 "/Users/juliansoh/Documents/dev/ME477/Reports/Lab8/report.tex" "report.pdf" "report" 1784512000.33165 0
+  "/Users/juliansoh/Documents/dev/ME477/Reports/Lab8/report.tex" 1784511994.21799 22134 c60eae3f1d53bccb263ffb7e21634f7e ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -331,6 +332,7 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "figures/Control-Block-Diagram.png" 1783398541.98352 26460 dc04d158f5516893a6631b79bddb81f6 ""
+  "figures/L8-2_Plots.png" 1784509919.51974 355886 b6f8675754b69fb8343e10a021fb6f7e ""
   "figures/PID_Control_Block_Diagram.png" 1784504771.09938 27271 bed8fa12609a92d1e6b1467227734bee ""
   "figures/Plot_Of_Lab8_Data.png" 1784508055.39414 238279 9354b4371c1b25980ea2e363487696cc ""
   "figures/Schema-Closed-Loop.png" 1783391821.43714 33874 d580a806619fdf21ce6241c52d69ce6d ""
@@ -338,10 +340,10 @@
   "myfontstyle.sty" 1757906315.75131 511 da96ca531bb3be0955bfe35704ed6dcb ""
   "mymacros.sty" 1757906315.75122 663 63c3d61f7ba8bcf8c9a6fffb65f42de2 ""
   "mypackages.sty" 1782087041.30239 5779 986efdc1c81ededc8646e4e9b2287d35 ""
-  "report.aux" 1784508195.34194 3726 64a3bb0d095699b9b65f173dadde7596 "pdflatex"
-  "report.bbl" 1784508172.15049 521 33ed3a1aa39f119a472e8124a3e75f65 "bibtex report"
-  "report.out" 1784508195.34564 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
-  "report.tex" 1784508193.69492 14419 6497feacf15eb159aab3e3f7a0fd6ac5 ""
+  "report.aux" 1784511999.9402 4428 f2e3026cce4bd2ab5894d176deae82f5 "pdflatex"
+  "report.bbl" 1784511995.08713 519 adb7739376afb50aa9c54cacbd1f8414 "bibtex report"
+  "report.out" 1784511999.95085 230 44beb5baf89c683bddcd54aa0a602f51 "pdflatex"
+  "report.tex" 1784511994.21799 22134 c60eae3f1d53bccb263ffb7e21634f7e ""
   (generated)
   "report.aux"
   "report.log"
